@@ -1,0 +1,14 @@
+.content {
+    height: 215px;
+    padding: 50px;
+    @include flex(center, center, column);
+}
+
+.form-hidden {
+    width: 100%;
+    @include flex(center, center);
+}
+
+.btn {
+    margin: 0 10px;
+}

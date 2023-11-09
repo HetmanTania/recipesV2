@@ -1,0 +1,126 @@
+.ingredien-block {
+    @include size(100%, 182px);
+    padding: 24px 70px;
+    margin: 24px 0;
+    background-color: $light-green;
+    border-radius: 5px;
+    &__inner {
+        height: 100%;
+        @include flex(center, space-between);
+    }
+
+    .img-name {
+        width: 80%;
+        @include flex(center, flex-start);
+        .img {
+            min-width: 128px;
+            @include size(128px, 128px);
+            margin-right: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .title {
+            color: $purplish-blue;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+    }
+
+    .amount-cheack {
+        width: 200px;
+        @include flex(center, space-between);
+
+        .amount {
+            @include size(90px,  35px);
+            padding-top: 6px;
+            color: $white;
+            background-color: $green;
+            border-radius: 5px;
+            text-align: center;
+        }
+    }
+}
+
+@media(max-width: 880px) { 
+    .ingredien-block {
+        padding: 24px 20px;
+    }
+
+  
+
+    
+}
+
+@media(max-width: 790px) {
+    .ingredien-block {
+
+        .img-name {
+            .title {
+                font-size: 16px;
+            }
+
+            .img {
+                min-width: 108px;
+                max-height: 108px;
+                @include size(108px, 108px);
+            }
+        }
+        
+    }
+}
+
+@media(max-width: 670px) {
+    
+    .ingredien-block {
+        padding: 0 20px;
+
+        .ingredien-block__inner {
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-evenly;
+        }
+
+        .img-name {
+            width: 100%;
+
+            .title {
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+@media(max-width: 450px) {
+    .ingredien-block {
+        .img-name {
+            .img {
+                min-width: 88px;
+                max-height: 88px;
+                width: 88px;
+                height: 88px;
+                margin-right: 10px;
+            }
+
+            .title {
+                font-size: 14px;
+            }
+        }
+        .amount-cheack {
+            width: 100%;
+            .amount {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    .ingredien-block {
+        height: 232px;  
+    }
+}

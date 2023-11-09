@@ -1,0 +1,175 @@
+.first-screen {
+    max-width: 100vw;
+    min-height: 570px;
+    position: relative;
+    top: -10px;
+    @include bg-img('../../assets/img/first-scren-recepi.jpg', cover, top);
+
+    &_content {
+        height: 70vh;
+        @include flex-center(column);
+
+        .title {
+            width: 80%;
+            margin-bottom: 24px;
+            font-size: 44px;
+            color: $green;
+            text-align: center;
+            line-height: 47px;
+        }
+
+        .desc-recep {
+            width: 656px;
+            text-align: center;
+            letter-spacing: -0.36px;
+        }
+
+        .time {
+            .icon-clock {
+                margin-right: 10px;
+            }
+            margin-top: 48px;
+            @include flex-center
+        }
+    }
+}
+
+.instructions {
+    padding: 50px 50px 200px 50px;
+    position: relative;
+    background-color: $white;
+
+
+    .list-img {
+        @include flex(flex-start, space-between);
+
+        img {
+            @include size(433px, 332px);
+        }
+
+    }
+
+    .list-ul {
+        width: 70%;
+        padding: 0;
+        list-style: none;
+        li {
+            @include flex(flex-start, flex-start);
+            margin-bottom: 21px;
+            color: $black-gray;
+            font-size: 18px;
+            line-height: 21px;
+            letter-spacing: -0.28px;
+
+            p {
+                width: 96%;
+            }
+            .num {
+                @include size(22px, 22px);
+                padding: 1px 0 0;
+                margin-right: 14px;
+                font-size: 16px;
+                font-weight: 600;
+                background-color: $green;
+                color: $white;
+                border-radius: 15px;
+                text-align: center;
+            }
+        }
+    }
+    
+}
+
+@media(max-width: 2100px) {
+    .first-screen {
+        background-size: 2400px;
+        
+        background-position: center;
+    }
+}
+
+
+
+@media(max-width: 1650px) {
+    .first-screen {
+        background-size: 1870px;
+    }
+
+    .instructions .list-ul {
+        width: 65%;
+    }
+}
+
+
+@media(max-width: 1450px) {
+    .first-screen {
+        background-size: 1620px;
+        background-position: 36% -190px;
+    }
+
+    .instructions .list-ul {
+        width: 60%;
+    }
+}
+
+@media(max-width: 1290px) {
+    .instructions  {
+        .list-img {
+            flex-direction: column;
+        }
+
+        .list-ul {
+            width: 100%;
+        }
+    }
+}
+
+
+@media(max-width: 1050px) {
+    .first-screen {
+        background-size: 1440px;
+        background-position: 50% -190px;
+    }
+
+}
+
+@media (max-width: 570px) {
+    .instructions {
+        padding: 20px 20px 200px 20px;
+
+        .list-ul {
+            li {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media(max-width: 760px) {
+    .first-screen {
+        background-size: 1260px;
+        background-position: 50% 0px
+    }
+
+    .first-screen_content .desc-recep {
+        width: 80%;
+    }
+
+    .instructions {
+        .list-img {
+            align-items: center;
+        }
+    }
+}
+
+@media (max-width: 455px) {
+    .instructions {
+        overflow: hidden;
+        padding-bottom: 250px;
+        .list-ul {
+            li {
+                font-size: 16px;
+            }
+        }
+    }
+}

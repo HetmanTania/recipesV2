@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif; 
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    color: $purplish-blue;
+    transition: .4s;
+    &:hover {
+        color: $granite;  
+        transition: .4s; 
+    }
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+
+.btn  {
+    width: 100%;
+    padding: 17px 35px;
+    order: 0;
+    border: 0;
+    border-radius: 6px;
+    &.btn-green {
+        color: $white;
+        background-color: $green;
+        transition: .3s;
+        &:hover {
+            transition: .3s;
+            background-color: $black;
+        }
+    }
+
+    &.btn-grey {
+        color: $white;
+        background-color: $granite;
+    }
+    
+    
+}
+
+.btn-curly {
+    order: 0;
+    border: 0;
+    padding: 20px 37px;
+    
+    border-top-left-radius: 30px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 30px;
+
+    border: 2px transparent solid;
+    transition: .7s;
+
+    &-green {
+        color: $white;
+        background: $green;
+        &:hover {
+            background: transparent;
+            border-color: $white;
+            transition: .7s;
+        }
+    }
+
+    &-green-hoverBlack { 
+        color: $white;
+        background: $green;
+        &:hover {
+            background: $granite;
+            border-color: $granite;
+            transition: .7s;
+        }
+    }
+
+    &-transparent {
+        color: $white;
+        background: transparent;
+        border-color: $white;
+
+        &:hover {
+            color: $white;
+            background: $green;
+            border-color: transparent;
+            transition: .7s;
+        }
+    }
+
+    &-greenTransparent {
+        border-color: $green;
+    }
+
+    
+}
+
+.form {
+    @include flex(flex-start, center, column);
+    padding: 40px 50px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 48px $shadow2;
+   
+}
+.form-grey {
+    background-color: $granite;
+
+}
+.cheackbox {
+    @include size(35px, 35px);
+    border: 2px solid $light-gray;
+    border-radius: 10px;
+    cursor: pointer;
+    input[type='checkbox'] {
+        display: none;
+    }
+
+    &.isCheak {
+        @include bg-img('assets/svg/check-mark.svg')
+    }
+}
+
+.list-ul {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; 
+    letter-spacing: -0.36px;
+    li {
+        margin-top: 12px;
+    }
+}
+
+.title {
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    
+    &-small {
+        font-size: 28px;
+    }
+
+    &-big {
+        font-size: 44px;
+        font-weight: 600;
+        line-height: 44px;
+        letter-spacing: -0.88px;
+    }
+
+    &-black {
+        color: $dark-blue;
+    }
+
+    &-white {
+        color: $white;
+    }
+
+    &-blue {
+        color: $purplish-blue;
+    }
+}
+
+.sub-title {
+    color: $black-gray;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.36px;
+}
+
+.avatar {
+    background-color: $light-gray2;
+    @include bg-img('assets/svg/userGrey.svg', 30px);
+    border-radius: 50%;
+}
+
+.icon-error {
+    @include bg-img('assets/svg/error.svg', cover);
+}
+.icon-searh {
+    @include bg-img('assets/svg/search.svg', cover);
+}
+
+.icon-arrow-narrow-right {
+    @include bg-img('assets/svg/arrow-narrow-right.svg', cover);
+}
+
+.icon-edit {
+    @include size(32px, 32px);
+    @include bg-img('assets/svg/edit.svg');
+}
+
+
+.icon-close {
+    @include size(32px, 32px);
+    @include bg-img('assets/svg/close.svg');
+}
+
+.icon-clock {
+    @include size(20px, 20px);
+    @include bg-img('assets/svg/clock.svg');
+}
+
+
+.icon-menu {
+    @include size(32px, 32px);
+    @include bg-img('assets/svg/menu.svg');
+}
+.text-green {
+    color: $green;
+}
+
+
+.leaves-1 {
+    @include size(420px, 555px);
+    @include bg-img('assets/img/kisspng-pasta-spinach-dip-english-muffin-breakfast-sandwic-spinach-5abcc32f2ee473 1.png');
+    filter: blur(2px);
+    z-index: 1;
+}
+
+.tips {
+
+    padding: 16px;
+    position: absolute;
+    background-color: $white;
+    border-radius: 10px;
+
+    &-text {
+        color: $purplish-blue;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px; 
+        letter-spacing: -0.24px;
+    }
+
+    &-ref {
+        color: $purplish-blue;
+        font-size: 10px;
+        line-height: 12px; 
+        letter-spacing: 0.2px;
+    }
+}

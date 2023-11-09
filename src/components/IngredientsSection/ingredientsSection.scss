@@ -1,0 +1,45 @@
+.ingrediens-block {
+    padding: 50px;
+    background-color: $white;
+
+    .ingredien-header {
+        @include size(100%, 60px);
+        @include flex(center, space-between);
+        padding: 0 40px;
+        color: $white;
+        background-color: $green;
+        border-radius: 5px;
+
+        .number-add {
+            width: 220px;
+            @include flex(center, space-between);
+        }
+    }
+}
+
+@media(max-width: 880px) { 
+    .ingrediens-block {
+        .ingredien-header  {
+            padding: 0 20px;
+            .number-add {
+                width: 160px;
+
+                
+            }
+
+           
+        }
+    }
+}
+
+@media(max-width: 570px) {
+    .ingrediens-block {
+        padding: 20px;
+    }
+}
+
+@media(max-width: 450px) {
+    .ingrediens-block .ingredien-header .number-add {
+        display: none;
+    }
+}

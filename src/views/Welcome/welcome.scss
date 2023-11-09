@@ -1,0 +1,49 @@
+.welcome {
+    min-height: 100vh;
+    @include bg-img('../../assets/img/bg2.jpg', cover, top);
+    @include flex-center();
+    &__wrapper {
+        @include size(550px);
+        @include flex-center(column);
+    }
+
+    .welcom__logo {
+        img {
+            @include size(64px, 64px);
+        }
+    }
+
+    &__title {
+        margin: 34px 0 10px;
+    }
+
+    .title {
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 28px;
+    
+        &-white {
+            color: $white;
+        }
+    }
+
+    .sub-title {
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+        letter-spacing: -0.02em;
+
+        &-white {
+            color: $white;
+        }
+    }
+
+    .register-singIn__btns {
+        @include flex-center;
+        margin-top: 40px;
+        .register-singIn__btn {
+            margin-left: 16px;
+        }
+    }
+}
+

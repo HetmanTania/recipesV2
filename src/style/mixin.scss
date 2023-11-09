@@ -1,0 +1,57 @@
+@mixin size($width, $height: auto){
+    width: $width;
+    height: $height;
+}
+
+@mixin bg-img($url, $size: cover, $position: center) {
+    background-image: url($url);
+    background-size: $size;
+    background-position: $position;
+    background-repeat: no-repeat;
+}
+
+@mixin flex-center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@mixin flex($align-items, $justify-content, $direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+
+@mixin positionTopLeft($postion,$top, $left) {
+    position: $postion;
+    top:$top;
+    left: $left;
+}
+
+@mixin postionTopRight($postion,$top, $right) {
+    position: $postion;
+    top:$top;
+    right: $right;
+}
+
+@mixin postionBottomLeft($postion, $bottom, $left) {
+    position: $postion;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin rePostionTopLeft($top, $left, $postion: relative) {
+    top:$top;
+    left: $left;
+    position: $postion;
+}
+
+@mixin rePostionBottomLeft($bottom, $left, $postion: relative) {
+    bottom: $bottom;
+    left: $left;
+    position: $postion;
+}

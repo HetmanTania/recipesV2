@@ -1,0 +1,24 @@
+.recipe-block {
+    @include size(300px, 323px);
+    @include bg-img('../../assets/img/assorted-sliced-fruits-in-white-ceramic-bowl-1092730 1.jpg');
+    border-radius: 8px;
+    position: relative;
+    .recipe-title {
+        @include size(268px, 52px);
+        @include positionTopLeft(absolute, 250px, 16px);
+        @include flex(center, start);
+        padding: 16px;
+        border-radius: 8px;
+        background-color: $white;
+
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px; 
+        letter-spacing: -0.24px;
+    }
+
+    a {
+        height: 100%;
+    }
+}
+

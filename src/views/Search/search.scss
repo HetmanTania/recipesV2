@@ -1,0 +1,28 @@
+main {
+    padding-bottom: 270px;
+    .title {
+        margin: 100px;
+    }
+
+    .search-sistem {
+        margin-bottom: 100px;
+        &__wrapper {
+            width: 480px;
+            position: relative;
+            margin: 0 auto;
+            @include flex-center;
+
+            .input {
+                height: 67px;
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 60px;
+            }
+
+            .btn {
+                width: 160px;
+                position: absolute;
+                right: -30px;
+            }
+        }
+    }
+}

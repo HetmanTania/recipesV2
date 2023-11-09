@@ -1,0 +1,61 @@
+main {
+    margin-bottom: 250px;
+    .title {
+        margin: 100px ;
+    }
+
+    .tab-sistem {
+        margin-bottom: 50px;
+        overflow-x: scroll;
+        
+
+        &::-webkit-scrollbar {
+            height: 3px;
+            background: $light-gray3;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 20px;       
+            border: 5px solid $green;  
+          }
+
+        .tabs {
+            @include flex(center, space-around);
+            
+            .tab {
+                padding: 10px 28px;
+                color: $light-gray3;
+                font-size: 18px;
+                white-space: nowrap;
+                cursor: pointer;
+
+                transition: color .4s;
+                &:last-child {
+                    padding-right: 30px;
+                }
+
+                &:hover {
+                    color: $light-gray2;
+                    transition: color .4s;
+                }
+
+                &.tab-chaek {
+                    border-top: 3px solid $green;
+                    color: $green;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+@media(max-width:1285px) {
+    main .tab-sistem {
+        .tabs {
+            justify-content: flex-start;
+        }
+    }
+}
+

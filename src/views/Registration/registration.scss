@@ -1,0 +1,75 @@
+.registrationAuth {
+    @include flex(center, space-around, row-reverse);
+    min-height: 100vh;
+    position: relative;
+    background-color: $white;
+
+    &__form {
+        @include size(500px, 484px);
+        // @include positionTopLeft(absolute, 130px, 50%);
+        z-index: 5;
+    }
+
+    &__title {
+        margin-bottom: 10px;
+    }
+
+    &__submit {
+        margin-top: 50px;
+    }
+
+    &__svg {
+        @include size(465px, 465px);
+        @include bg-img('../../assets/svg/registration.svg');
+        z-index: 2;
+    }
+
+    &__rectangle {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        @include size(100vw, 345px);
+        @include bg-img('../../assets/svg/rectangle-reg.svg', cover, top);
+       
+    }
+
+    &__refSingIn {
+        @include positionTopLeft(relative, 20px, 40%);
+        font-size: 16px;
+        color: $white;
+        text-decoration: underline;
+        
+    }
+}
+
+@media(max-width: 1024px) and (min-width:890px) {
+    .registrationAuth__svg {
+        @include size(385px, 405px);
+    }
+}
+
+@media(max-width: 890px) and (min-width:230px) {
+    .registrationAuth {
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+    }
+    .registrationAuth__svg {
+        @include size(325px, 195px);
+    }
+}
+
+@media(max-width: 530px) and (min-width:230px) {
+    .registrationAuth__form {
+        width: 95%;
+        .form {
+            padding: 40px 30px;
+        }
+    } 
+}
+
+@media(max-width: 350px) and (min-width:230px) {
+
+    .registrationAuth__svg {
+        @include size(100%, 235px);
+    }
+}

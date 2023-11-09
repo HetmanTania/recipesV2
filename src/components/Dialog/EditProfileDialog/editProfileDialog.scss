@@ -1,0 +1,48 @@
+
+.dialog {
+ 
+    height: 425px;
+    .content {
+        height: 100%;
+        padding: 50px 60px;
+        @include flex(center, space-evenly, column);
+    
+        .form-hidden {
+            width: 100%;
+        }
+
+        .avatar {
+            @include size(133px, 133px);
+        }
+
+        input[type="file"] {
+            display: none
+        }
+
+        .btn-green {
+            margin-top: 32px;
+        }
+
+        .btn-edit {
+            @include size(24px, 24px);
+            @include positionTopLeft(absolute, 170px, 280px);
+            background-color: $green;
+            border-radius: 50%;
+            transition: .3s;
+            &:hover {
+                background-color: $black;  
+                transition: .3s;
+            }
+
+            &::after {
+                content: '+';
+                @include positionTopLeft(relative, -3px, 5px);
+                font-size: 21px;
+                color: $white;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
