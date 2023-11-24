@@ -46,3 +46,10 @@ export function ellipsisText(str, length = 24) {
     }
     return str;
 }
+
+export function toLowerCase(str) {
+    if(str && str.length) {
+        return str.toLowerCase();
+    }
+    return '';
+}

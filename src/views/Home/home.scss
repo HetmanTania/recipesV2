@@ -382,11 +382,6 @@
     
 }
 
-
-// recipecSection
-
-
-
 @media(max-width:1450px) {
     .recipecSection {
         padding: 0 30px;
@@ -399,7 +394,6 @@
        justify-content: space-between;
     }
     .recipecSection-list .recipe-block {
-        width: 336px;
         .recipe-title {
             left: 31px;
         }
@@ -412,9 +406,9 @@
 @media(max-width:1110px) {
     .recipecSection-list {
         justify-content: space-around;
-        .recipe-block {
-            width: 336px;
-        }
+        // .recipe-block {
+        //     width: 336px;
+        // }
     }
     
     .recipecSection-list .recipe-block:nth-child(3) {

@@ -27,17 +27,18 @@ export default {
 
         const typeMeal = ref(MEALTYPES['main course'].value);
         const pageNum = ref(1);
-
+        const countRecipes = 8;
+        let offset = 0;
         
         const requrstRecipesLists = async () => {
-            await store.dispatch('recipes/requrstRecipesLists', { search: typeMeal.value, count: 8, offset: 0});
+            await store.dispatch('recipes/requrstRecipesLists', { search: typeMeal.value, count: countRecipes, offset: offset});
         }
 
         requrstRecipesLists();
 
         const recipeList = computed(() => {
             return store.getters['recipes/getRecipesList'](typeMeal.value);
-        })
+        });
 
         
         const infoPagination = computed(() => {
@@ -46,6 +47,12 @@ export default {
 
         const changePagination = async (num) => {
             pageNum.value = num;
+            if (offset !== 1) {
+                offset = (pageNum.value * countRecipes) - countRecipes;
+            }
+            else {
+                offset = 0;
+            }
             await requrstRecipesLists();
         }
 

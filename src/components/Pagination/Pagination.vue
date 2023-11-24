@@ -1,11 +1,9 @@
 <template>
     <div class="pagination">
-        <button class="pagination__item">p</button>
         <button @click="setPage(state.currentPage - 3)" v-if="isShowFirstEllipsis" class="pagination__item">...</button>
         <button @click="setPage(num)" v-for="num in getShowPaginationList" :key="num" :class="[{current: isCurrentPage(num)}, 'pagination__item']">{{ num }}</button>
-        <button @click="setPage(state.showPaginationNum.to + 1)" class="pagination__item">...</button>
-        <button @click="setPage(lastItem)" class="pagination__item">{{lastItem}}</button>
-        <button class="pagination__item">n</button>
+        <button @click="setPage(state.showPaginationNum.to + 1)" v-if="!isShowLastEllipsis" class="pagination__item">...</button>
+        <button @click="setPage(lastItem)" v-if="!isShowLastEllipsis" class="pagination__item">{{lastItem}}</button>
     </div>
 
 </template>
@@ -25,6 +23,7 @@ export default {
         const state = reactive({
             currentPage: 1,
             showPaginationNum: {
+                count: 7,
                 from:1,
                 to:7
             }
@@ -46,8 +45,12 @@ export default {
             return state.currentPage >= 5;
         });
 
+        const isShowLastEllipsis = computed(() => {
+            return state.currentPage + 3 >= lastItem.value;
+        });
+
         const getShowPaginationList = computed(() =>  {
-            return [...Array(7)].map((_, i) => state.showPaginationNum.from + i);
+            return [...Array(state.showPaginationNum.count)].map((_, i) => state.showPaginationNum.from + i);
         });
 
         const lastItem = computed(() => {
@@ -60,18 +63,20 @@ export default {
        
         const setShowPaginationNum = (num) => {
             if(num - 3 <= 0) {
-                state.showPaginationNum = {
-                    from: 1,
-                    to: 7
-                };
+                state.showPaginationNum.from = 1;
+                state.showPaginationNum.from = 7;
+            }
+            else if(num + 3 >= lastItem.value) {
+                state.showPaginationNum.from = lastItem.value - 6;
+                state.showPaginationNum.to = lastItem.value;
+
             }
             else if((num >= state.showPaginationNum.from) || num > state.showPaginationNum.to) {
-                state.showPaginationNum = {
-                    from: num - 3,
-                    to: num + 3
-                };
+                state.showPaginationNum.from =  num - 3;
+                state.showPaginationNum.to = num + 3;
+                state.showPaginationNum.count = 7;
             }
-               
+            
            
         }
 
@@ -88,7 +93,7 @@ export default {
             getShowPaginationList,
             isCurrentPage,
             isShowFirstEllipsis,
-
+            isShowLastEllipsis,
             state
         }
     }

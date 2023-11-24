@@ -1,7 +1,11 @@
 main {
-    padding-bottom: 270px;
+    margin-bottom: 220px;
     .title {
-        margin: 100px;
+        margin: 100px 100px 50px;;
+    }
+
+    .title-small {
+        margin: 0 100px 50px;
     }
 
     .search-sistem {

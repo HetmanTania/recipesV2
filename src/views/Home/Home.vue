@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="second-screen">
-        <recipes-section :searchText="category.title" v-for="category in categories" :key="category.title" ></recipes-section>
+        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" ></recipes-section>
         <router-link class="btn btn-curly btn-curly-greenTransparent btn-categories" to="#">Other categories</router-link>
         
     </div>
@@ -33,14 +33,34 @@ import TheHeader from '../../components/TheHeader/TheHeader.vue'
 import InputText from '../../components/InputText/InputText.vue';
 import RecipesSection from '../../components/RecipesSection/RecipesSection.vue';
 import TheFooter from '../../components/TheFooter/TheFooter.vue';
-
+import { useStore } from 'vuex';
+import { onBeforeMount,reactive } from 'vue';
 export default {
     setup() {
+        const store = useStore();
 
         const categories = [MEALTYPES['breakfast'], MEALTYPES['main course'], MEALTYPES['salad'], MEALTYPES['dessert']];
+        const countRecipes = 4;
+        const allRecipeList = reactive([]);
+
+        onBeforeMount(() => {
+            requrstAllRecipesLists();
+        });
+        
+        const requrstAllRecipesLists = async () => {
+            categories.forEach( async (category) => {
+                await requrstRecipesLists(category.title);
+            });
+        }
+
+        const requrstRecipesLists = async (category) => {
+            await store.dispatch('recipes/requrstRecipesLists', { search: category, count: countRecipes, offset: 0});
+            allRecipeList.push(store.getters['recipes/getRecipesList'](category));
+        }
 
         return {
             categories,
+            allRecipeList,
         }
 
     },

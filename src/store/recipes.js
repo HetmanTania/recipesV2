@@ -1,4 +1,4 @@
-import {generateUrl} from '../utils/utils.js'
+import {generateUrl, toLowerCase} from '../utils/utils.js'
 import axios from 'axios';
 export default {
     namespaced: true,
@@ -28,7 +28,7 @@ export default {
     actions: {
         async doRequestRecipes(_, url) {
             try {
-                if(url) {
+                if(url && url.length) {
                     const result = await axios.get(url);
                     return result.data;
                 }
@@ -38,14 +38,37 @@ export default {
         },
         async requrstRecipesLists({ dispatch, commit }, {search, count, offset}) {
             console.log('requrstRecipesLists', offset);
+
+            search = toLowerCase(search);
+
             let url = generateUrl('complexSearch',`type=${search}&number=${count}&offset=${offset}`);
            
             const result = await dispatch('doRequestRecipes', url);
-            if (result) {
+            
+            if(result) {
                 const items = {
                     title: search,
                     items: result.results,
-                }
+                };
+                const infoPagination = {
+                    total: result.totalResults > 1000 ? 900 : result.totalResults,
+                    count: result.number, 
+                    offset: result.offset 
+                };
+                commit('addItemsToRcipesLists', items);
+                commit('setInfoPagination', infoPagination);
+            }
+            
+        },
+        async requestSerch({dispatch, commit}, {search, count, offset}) {
+            search = toLowerCase(search);
+            const url = generateUrl('complexSearch',`query=${search}&number=${count}&offset=${offset}`);            
+            const result = await dispatch('doRequestRecipes', url);
+            if(result) {
+                const items = {
+                    title: 'search',
+                    items: result.results,
+                };
                 const infoPagination = {
                     total: result.totalResults > 1000 ? 900 : result.totalResults,
                     count: result.number, 
@@ -55,12 +78,6 @@ export default {
                 commit('setInfoPagination', infoPagination);
             }
 
-            
-        },
-        async requestSerch({dispatch}, {search, count, offset}) {
-            const url = generateUrl('complexSearch',`query=${search}&number=${count}&offset=${offset}`);            
-            const result = await dispatch('doRequestRecipes', url);
-            console.log(result);
         },
         async requrstRecipe({commit}, id) {
             console.log('requrstRecipe');
@@ -79,9 +96,7 @@ export default {
     },
     getters: {
         getRecipesList: (state) => (title) => {
-            if(title) {
-                title = title.toLowerCase();
-            }
+            title = toLowerCase(title);
             return state.recipesLists[title] ? state.recipesLists[title].items : [];
         },
         getRecipe(state) {
