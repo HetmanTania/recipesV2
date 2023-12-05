@@ -2,12 +2,12 @@
     <div class="ingredien-block">
         <div class="ingredien-block__inner">
             <div class="img-name">
-                <div class="img" :style="{ backgroundImage: `url(${imgIngredient})` }"/>
+                <div class="img" :style="getBG"/>
                 <h3  class="title">{{ name }}</h3>
             </div>
             <div class="amount-cheack">
                 <p class="amount">{{ amount }}</p>
-                <label :class="[{isCheak: state.isAddToList}, 'cheackbox']" :for="getIdIngredients">
+                <label :class="[getClassLabel, 'cheackbox']" :for="getIdIngredients">
                     <input v-model="state.isAddToList" :id="getIdIngredients"  type="checkbox">
                 </label>
             </div>
@@ -29,9 +29,22 @@ export default {
         }
     },
     setup(props) {
+
         const state = reactive({
             ingredien: {...props.ingredien},
             isAddToList: false
+        });
+        
+        const changeInputAddToLis = () => {
+            state.isAddToList = !state.isAddToList
+        }
+
+        const getBG = computed(() => {
+           return { backgroundImage: `url(${imgIngredient.value})` };
+        });
+
+        const getClassLabel = computed(() => {
+           return { isCheak: state.isAddToList }
         });
 
         const imgIngredient = computed(() => {
@@ -48,20 +61,20 @@ export default {
 
        const amount = computed(() => {
             return `${state.ingredien.amount} ${state.ingredien.measures.metric.unitShort}`;
-       }) 
+       });
 
-       const changeInputAddToLis = () => {
-            state.isAddToList = !state.isAddToList
-       }
 
         return {
             state,
+
+            changeInputAddToLis,
+
             getIdIngredients,
+            getClassLabel,
             imgIngredient,
             name,
             amount,
-
-            changeInputAddToLis,
+            getBG,
         }
 
     }

@@ -3,12 +3,12 @@
         <template v-slot:content>
             <div class="content">
                 <div class="editAvatar">
-                    <img :src="state.pathUserAvatar" ref="avatar" class="avatar"/>
+                    <img :src="state.pathUserAvatar" ref="avatar" width="133" alt="avatar" class="avatar"/>
                     <label for="file" class="btn-edit"></label>
                     <input @change="setUserAvatar" id="file" type="file" accept=".jpg, .jpeg, .png" />
                 </div>
                 <form action="" class="form-hidden">
-                    <InputText  v-model="state.userName" :isError="state.errorName" clases="editProfileDialog__input input input-gray" placeholder="User Name" icon="user-black"></InputText>
+                    <InputText v-model="state.userName" :isError="state.errorName" clases="editProfileDialog__input input input-gray" placeholder="User Name" icon="user-black"></InputText>
                     <button @click.prevent="updateUserProfile" type="submit" class="btn btn-green">Save changes</button>
                 </form>
             </div>
@@ -19,9 +19,13 @@
 <script>
 import BaseDialog from '../BaseDialog.vue';
 import InputText from '../../InputText/InputText.vue';
-import { useStore } from 'vuex';
-import { reactive, ref } from 'vue'
+
+
 import { cheackName } from '../../../utils/utils';
+
+import { useStore } from 'vuex';
+import { reactive, ref } from 'vue';
+
 export default {
     
     setup(_, context) {
@@ -36,7 +40,8 @@ export default {
 
         const avatar = ref(null);
         state.userName = store.getters.getUserName;
-        state.pathUserAvatar = store.getters.getUserAvatarPhotoURL ? store.getters.getUserAvatarPhotoURL : require('../../../assets/svg/avatar.svg');
+        state.pathUserAvatar = store.getters.getUserAvatarPhotoURL ?
+         store.getters.getUserAvatarPhotoURL : require('../../../assets/svg/avatar.svg');
 
         const cheackUserName = () => {
             if(cheackName(state.userName)) {
@@ -94,11 +99,7 @@ export default {
             closeDialog
         }
     },
-    components: {
-        BaseDialog,
-        InputText,
-        
-    }
+    components: { BaseDialog, InputText,}
 }
 
 </script>

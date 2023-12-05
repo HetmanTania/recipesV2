@@ -1,5 +1,5 @@
 <template>
-  <div :style="{backgroundImage: 'url(' + recipeData.image + ')'} " class="recipe-block">
+  <div :style="getBG" class="recipe-block">
         <router-link :to="{name: 'recipe', params: { id: idRecipe }}">
             <div class="recipe-title">{{title}}</div>
         </router-link>
@@ -7,8 +7,10 @@
 </template>
 
 <script>
-import {computed} from 'vue';
 import { ellipsisText } from '../../utils/utils';
+
+import { computed } from 'vue';
+
 export default {
     props: {
         recipe: {
@@ -18,18 +20,25 @@ export default {
     },
     setup(props) {
         const recipeData = {...props.recipe};
+
         const title = computed(() => {
            return ellipsisText(recipeData.title);
         });
 
         const idRecipe = computed(() => {
             return recipeData.id;
-        })
+        });
+
+        const getBG = computed(() => {
+            return `background-image: url('${recipeData.image}')`
+        });
 
         return {
             recipeData,
+
             idRecipe,
-            title
+            title,
+            getBG,
         }
     }
 }

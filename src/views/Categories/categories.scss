@@ -49,8 +49,6 @@ main {
 
 }
 
-
-
 @media(max-width:1285px) {
     main .tab-sistem {
         .tabs {
@@ -59,3 +57,9 @@ main {
     }
 }
 
+@media(max-width:500px) {
+    main .title {
+        margin: 60px;
+        font-size: 36px;
+    }
+}

@@ -35,10 +35,10 @@ export default {
                 context.emit('changePagination', state.currentPage);
                 setShowPaginationNum(num);
             }
-        }
+        };
 
         const isCurrentPage = (num) => {
-            return state.currentPage === num
+            return state.currentPage === num;
         };
 
         const isShowFirstEllipsis = computed(() => {
@@ -54,9 +54,8 @@ export default {
         });
 
         const lastItem = computed(() => {
-            console.log(props.infoPagination);
             if(props.infoPagination?.total) {
-                return Math.ceil(props.infoPagination.total / props.infoPagination.count)
+                return Math.ceil(props.infoPagination.total / props.infoPagination.count);
             }
             return 0;
         });
@@ -64,7 +63,7 @@ export default {
         const setShowPaginationNum = (num) => {
             if(num - 3 <= 0) {
                 state.showPaginationNum.from = 1;
-                state.showPaginationNum.from = 7;
+                state.showPaginationNum.to = 7;
             }
             else if(num + 3 >= lastItem.value) {
                 state.showPaginationNum.from = lastItem.value - 6;
@@ -76,25 +75,25 @@ export default {
                 state.showPaginationNum.to = num + 3;
                 state.showPaginationNum.count = 7;
             }
-            
-           
         }
 
         watch(() => props.infoPagination, (newValue, oldValue) => { 
             if(newValue.total !== oldValue.total) {
                 setPage(1);
             }
-        })
+        });
 
 
         return {
+            state,
+
             setPage,
-            lastItem,
-            getShowPaginationList,
             isCurrentPage,
-            isShowFirstEllipsis,
+
             isShowLastEllipsis,
-            state
+            isShowFirstEllipsis,
+            getShowPaginationList,
+            lastItem,
         }
     }
 

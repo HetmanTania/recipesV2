@@ -1,13 +1,13 @@
 <template>
    <div class="input-wrapper">
-        <div class="icon" :style="{ backgroundImage: `url(${iconPath})` }"></div>
+        <div :style="{ backgroundImage: `url(${iconPath})` }" class="icon"></div>
         <input :value="modelValue" @change="updateValue" :class="getClassInput" :placeholder="placeholder" type="password"/>
         <div :class="getClassIcon" class="icon icon-error input-error"></div>
     </div>
 </template>
 
 <script>
-import useInput from '../../сomposable/useInput.js';
+import useInput from '../../composable/useInput.js';
 export default {
     props: {
         icon: {
@@ -38,9 +38,11 @@ export default {
 
         return {
             iconPath,
-            updateValue,
             getClassInput,
-            getClassIcon
+            getClassIcon,
+
+            
+            updateValue,
         }
 
     }

@@ -34,6 +34,12 @@ footer {
 }
 
 
+.error-text {
+    margin: 10px 0;
+    color: $red;
+    font-size: 14px;
+}
+
 .btn  {
     width: 100%;
     padding: 17px 35px;
@@ -232,7 +238,7 @@ footer {
 
 .leaves-1 {
     @include size(420px, 555px);
-    @include bg-img('assets/img/kisspng-pasta-spinach-dip-english-muffin-breakfast-sandwic-spinach-5abcc32f2ee473 1.png');
+    @include bg-img('assets/img/kisspng-pasta-spinach-dip-english-muffin-breakfast-sandwic-spinach-5abcc32f2ee473 1.webp');
     filter: blur(2px);
     z-index: 1;
 }

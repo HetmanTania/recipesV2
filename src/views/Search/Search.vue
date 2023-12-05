@@ -16,26 +16,39 @@
 </template>
 
 <script>
+
 import Pagination from '../../components/Pagination/Pagination.vue';
 import RecipesSection from '../../components/RecipesSection/RecipesSection.vue';
 import TheHeader from '../../components/TheHeader/TheHeader.vue';
 import TheFooter from '../../components/TheFooter/TheFooter.vue'
 import InputText from '../../components/InputText/InputText.vue'
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
+
+import { ref, computed, onMounted  } from 'vue';
+import { useStore,  } from 'vuex';
+import { useRoute } from 'vue-router';
+
 export default {
     setup() {
         const valueSearchText = ref('');
         let searchText = '';
 
         const store = useStore();
+        const route = useRoute();
 
         const pageNum = ref(1);
         const countRecipes = 8;
         let offset = 0;
 
+        onMounted(async () => {
+            if(route.query.searchText && route.query.searchText.length) {
+                searchText = route.query.searchText;
+                valueSearchText.value = searchText;
+                await requrstRecipesLists();
+            }
+        });
+
         const search = async () => {
-            searchText = valueSearchText.value;
+            searchText = valueSearchText.value;   
             await requrstRecipesLists();
         };
 
@@ -44,7 +57,6 @@ export default {
         });
 
         const infoPagination = computed(() => {
-            console.log('g');
             return store.getters['recipes/getInfoPagination'];
         });
 

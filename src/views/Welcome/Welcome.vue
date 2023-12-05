@@ -2,7 +2,7 @@
   <main class="welcome">
     <div class="welcome__wrapper">
       <div class="welcome__logo logo svg">
-        <img src="../../assets/svg/logo.svg"/>
+        <img src="../../assets/svg/logo.svg" width="44" alt="logo"/>
       </div>
       <h1 class="welcome__title title title-white">Welcome to the app!</h1>
       <div class="welcome__sub-title sub-title sub-title-white">This app offers more than just a collection of recipes - it is designed to be your very own digital cookbook. You can easily save and retrieve your own recipes at any time.</div>

@@ -1,14 +1,13 @@
 <template>
     <div class="input-wrapper">
-        <div v-if="iconPath.length" class="icon" :style="{ backgroundImage: `url(${iconPath})` }"></div>
+        <div v-if="iconPath?.length" :style="{ backgroundImage: `url(${iconPath})` }" class="icon" ></div>
         <input :value="modelValue" @change="updateValue" :class="getClassInput" :placeholder="placeholder" type="text"/>
         <div :class="getClassIcon" class="icon icon-error input-error"></div>
-        {{  }}
     </div>
 </template>
 
 <script>
-import useInput from '../../сomposable/useInput.js';
+import useInput from '../../composable/useInput.js'
 export default {
     props: {
         icon: {
@@ -40,9 +39,11 @@ export default {
 
         return {
             iconPath,
-            updateValue,
             getClassInput,
-            getClassIcon
+            getClassIcon,
+
+            
+            updateValue,
         }
 
     }

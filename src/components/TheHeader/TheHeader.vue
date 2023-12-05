@@ -1,21 +1,19 @@
 <template>
     <header class="header">
         <div class="header_wrapper">
-            <router-link to="/home'" class="logo svg">
-                <img src="../../assets/svg/logo.svg" />
+            <router-link to="/" class="logo svg">
+                <img src="../../assets/svg/logo.svg" width="44" alt="logo"/>
             </router-link>
             <nav class="nav">
                 <ul class="nav_list">
                     <li class="nav_list-item"><router-link to="/categories">Categories</router-link></li>
                     <li class="nav_list-item"><router-link to="/search">Search</router-link></li>
-                    <li class="nav_list-item">Favorites</li>
-                    <li class="nav_list-item">Shopping list</li>
                 </ul>
             </nav>
             <div class="auth-menu">
                 <div class="header_wrapper-auth-theme">
-                    <div class="auth" @click="editProfileOpenClose.open">
-                        <img :src="userAvatar" class="auth_avatar avatar"/>
+                    <div  @click="editProfileOpenClose.open" class="auth">
+                        <img :src="userAvatar" width="44" alt="avatar" class="auth_avatar avatar"/>
                         <div class="auth_login">{{ userName }}</div>
                     </div>
                     <div v-if="isOpenEditProfil" class="editProfile">
@@ -23,7 +21,7 @@
                             <p>Edit Profile</p>
                             <div class="svg icon-edit"></div>
                         </div>
-                        <button class="btn-curly btn-curly-green-hoverBlack" @click="openDialogLogout"> logout </button>
+                        <button  @click="openDialogLogout" class="btn-curly btn-curly-green-hoverBlack"> logout </button>
                     </div>
                     <div v-if="isOpenEditProfil" @click="editProfileOpenClose.close" class="bg-Profile"></div>
                 </div>
@@ -32,19 +30,15 @@
                     <div :class="[{ isOpen: isOpenMenu }, 'menu-block']">
                         <div class="logo-close">
                             <div class="logo svg">
-                                <img src="../../assets/svg/logo.svg" />
+                                <img src="../../assets/svg/logo.svg" width="44" alt="logo" />
                             </div>
                             <div @click="menuOpenColose.close" class="icon-close svg"></div>
                         </div>
                         <div class="munu-ul">
                             <ul class="list-ul">
-                                <li>Home</li>
-                                <li>Categories</li>
-                                <li>Favorites</li>
-                                <li>Search</li>
-                                <li class="searh">
-                                    <div class="icon-searh svg"></div> Categories
-                                </li>
+                                <li><router-link to="/">Home</router-link></li>
+                                <li><router-link to="/categories">Categories</router-link></li>
+                                <li><router-link to="/search">Search</router-link> </li>
                             </ul>
                         </div>
                         <div class="bg-img leaves-1"></div>
@@ -53,17 +47,21 @@
             </div>
         </div>
     </header>
-    <EditProfileDialog  @closeDialog="closeDialogEditProfil" :isOpenDialog="isOpenDialogEditProfil"></EditProfileDialog>
+    <EditProfileDialog @closeDialog="closeDialogEditProfil" :isOpenDialog="isOpenDialogEditProfil"></EditProfileDialog>
     <LogoutDialog @closeDialog="closeDialogLogout" :isOpenDialog="isOpenDialogLogout"></LogoutDialog>
 </template>
 
 <script>
-import { useStore } from 'vuex';
-import { computed, onUpdated, ref } from 'vue';
-import useOpenClose from '../../composable/useOpenClose';
+
 import EditProfileDialog from '../Dialog/EditProfileDialog/EditProfileDialog.vue';
 import LogoutDialog from '../Dialog/LogoutDialog/LogoutDialog.vue';
+import useOpenClose from '../../composable/useOpenClose.js';
+
+import { useStore } from 'vuex';
+import { computed, ref } from 'vue';
+
 export default {
+
     setup() {
         const store = useStore();
 
@@ -101,23 +99,16 @@ export default {
         });
 
         const userName = computed(() => {
-            console.log('userName', store.getters.getUserName);
             return store.getters.getUserName;
         });
 
         const userAvatar = computed(() => {
             if( store.getters.getUserAvatarPhotoURL?.length) {
-                return  store.getters.getUserAvatarPhotoURL;
+                return store.getters.getUserAvatarPhotoURL;
             }
             
             return require('../../assets/svg/avatar.svg');
         });
-
-        onUpdated(() => {
-            console.log('update');
-            console.log('userName', userName);
-        })
-
 
         return {
 

@@ -1,12 +1,11 @@
 .registrationAuth {
     @include flex(center, space-around, row-reverse);
-    min-height: 100vh;
+    min-height: 97vh;
     position: relative;
     background-color: $white;
 
     &__form {
         @include size(500px, 484px);
-        // @include positionTopLeft(absolute, 130px, 50%);
         z-index: 5;
     }
 
@@ -15,7 +14,7 @@
     }
 
     &__submit {
-        margin-top: 50px;
+        margin-top: 10px;
     }
 
     &__svg {
@@ -34,6 +33,7 @@
     }
 
     &__refSingIn {
+        width: max-content;
         @include positionTopLeft(relative, 20px, 40%);
         font-size: 16px;
         color: $white;

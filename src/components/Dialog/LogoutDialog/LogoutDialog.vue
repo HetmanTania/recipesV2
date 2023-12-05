@@ -15,6 +15,7 @@
 <script>
 
 import BaseDialog from '../BaseDialog.vue';
+
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
@@ -33,8 +34,8 @@ export default {
         }
 
         return {
+            closeDialog,
             logout,
-            closeDialog
         }
     },
     components: { BaseDialog }

@@ -10,9 +10,9 @@
 </template>
 
 <script>
+
 import RecipesBlock from '../RecipesBlock/RecipesBlock.vue';
-// import { computed, onBeforeMount, watch } from 'vue';
-// import { useStore } from "vuex";
+
 export default {
   props: {
     isShowTitle: {
@@ -27,57 +27,6 @@ export default {
       type: Array,
       required: true,
     }
-
-
-    // search: {
-    //   require: true,
-    //   type: Object
-    // },
-    // countRecipes: {
-    //   type: Number,
-    //   default: 4,
-    // },
-    
-    // pageNum: {
-    //   type: Number,
-    //   default: 1.
-    // }
-  },
-   setup() {
-    // const store = useStore();
-    // let offset = 0;
-    
-    // const recipesList = computed(() => {
-    //   return store.getters['recipes/getRecipesList'](props.search.searchText);
-    // })
-
-    // onBeforeMount( async () => {
-    //   console.log(offset);
-    //   await getRecipes();
-    // });
-
-    // watch(() => props.searchText, async () => {
-    //   await getRecipes();
-    // });
-
-    // watch(() => props.pageNum, async () => {
-    //   await getRecipes();
-    // });
-
-    // const getRecipes = async () => {
-    //   offset = offset !== 1 ? (props.pageNum * props.countRecipes) - props.countRecipes : 0
-
-    //   console.log(offset);
-    //   await store.dispatch('recipes/requrstRecipesLists',{ search: props.search, count: props.countRecipes, offset: offset});
-    // }
-
-    // return { 
-    //   recipesList
-    // }
-
-    // return {
-    //   recipesList
-    // }
   },
   components: {RecipesBlock}
 }

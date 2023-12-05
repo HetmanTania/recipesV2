@@ -1,6 +1,7 @@
 .welcome {
     min-height: 100vh;
-    @include bg-img('../../assets/img/bg2.jpg', cover, top);
+    margin: 0;
+    @include bg-img('../../assets/img/bg2.webp', cover, top);
     @include flex-center();
     &__wrapper {
         @include size(550px);
@@ -47,3 +48,18 @@
     }
 }
 
+@media(max-width:580px) {
+    .welcome__wrapper {
+        width: 90%;
+    }
+}
+
+@media(max-width:390px) {
+    .welcome .register-singIn__btns {
+        flex-direction: column;
+
+        a:first-child {
+            margin-bottom: 20px;
+        }
+    }
+}

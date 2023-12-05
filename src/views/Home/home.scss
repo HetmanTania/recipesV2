@@ -31,7 +31,7 @@
     .bg-img.boul {
         @include size(578px, 539px);
         @include positionTopLeft(absolute, 80px, 50%);
-        @include bg-img('../../assets/img/4b7e4ed0-f239-4da2-bc9c-7a12a95a7f77.png');
+        @include bg-img('../../assets/img/4b7e4ed0-f239-4da2-bc9c-7a12a95a7f77.webp');
         z-index: 2;
     }
 
@@ -40,12 +40,20 @@
     }
     .search-input {
         @include size(390px, 70px);
+        color: $black;
         background-color: $white2;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 60px;
+
+        &::placeholder {
+            color: $granite;
+        }
+        :focus {
+            outline: none;
+        }
     }
     .search-btn {
-        width: 160px;
+        @include size(160px, 70px);
         position: absolute;
         left: 340px;
     }
@@ -81,6 +89,10 @@
        
         .tips-ref {
             @include flex(center, center);
+
+            &:hover {
+                color: $black;
+            }
         }
 
         .icon-arrow-narrow-right {
@@ -122,21 +134,27 @@
     .first-screen {
 
         .info {
-            @include size(370px, 280px);
+            @include size(45%, 280px);
         }
 
         .bg-img.boul {
             @include size(430px, 440px);
             top: 125px;
+            left: 60%;
         }
 
-        .search-input {
-            width: 290px;
+
+        .search-dox {
+            width: 100%;
+            .search-input {
+                width: 90%;
+            }
+    
+            .search-btn {
+                left: 65%;
+            }
         }
 
-        .search-btn {
-            left: 200px;
-        }
 
         .title {
             font-size: 72px;
@@ -151,7 +169,8 @@
         }
 
         .leaves-1 {
-            left: 390px;
+            width: 565px;
+            left: 610px;
         }
 
         .leaves-2 {
@@ -162,8 +181,51 @@
     
 } 
 
-@media(max-width: 1040px) {
-   .second-screen .leaves-1 {
+
+@media(max-width:1450px) {
+    .recipecSection {
+        padding: 0 30px;
+    }
+}
+
+
+@media(max-width:1350px) {
+    .recipecSection-list {
+       justify-content: space-between;
+        .recipe-block:nth-child(4) {
+            display: none;
+        }
+    }
+}
+
+@media(max-width:1110px) {
+    .recipecSection-list {
+        justify-content: space-around;
+    }
+    
+    .recipecSection-list .recipe-block:nth-child(3) {
+        display: none;
+    }
+}
+
+@media(max-width:1040px) {
+    .recipecSection-title {
+        display: none;
+    }
+
+    .recipecSection-btn {
+        display: none;
+    }
+    
+    .recipecSection-list {
+        justify-content: space-around;
+    }
+
+    .recipecSection-list .recipe-block:nth-child(3) {
+        display: none;
+    }
+
+    .second-screen .leaves-1 {
         top: 2290px;    
     }
 }
@@ -195,14 +257,6 @@
 @media(max-width: 890px) { 
     .first-screen-tips {
         left: 58%;
-    }
-}
-
-@media(max-width: 800px) { 
-    .second-screen .leaves-1 {
-        height: 425px;
-        @include rePostionTopLeft(2020px, -90px, absolute);
-        transform: rotate(100deg);
     }
 }
 
@@ -256,6 +310,12 @@
             background-size: contain;
        }
 
+       .first-screen-tips {
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, 0);
+        }
+
       
     }
 }
@@ -270,11 +330,6 @@
 }
 
 @media(max-width: 650px) { 
-    .first-screen-tips {
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, 0);
-    }
 
     .first-screen .leaves-2 {
         top: 420px;
@@ -330,119 +385,47 @@
 @media(max-width: 440px) { 
     .first-screen {
         padding: 0 10px;
-
          .bg-img.boul {
             @include size(130%, 510px);
             @include rePostionTopLeft(75px, -15%, absolute);
             opacity: 0.7;
-            filter: blur(2px);
+            filter: blur(4px);
             z-index: 1;
         }
         .info {
+            margin-top: 90px;
             z-index: 2;
 
             .search-dox {
-                text-align: left;
+                margin-top: 220px;
+                flex-direction: column;
+                .input-wrapper {
+                    width: 100%;
+                }
+                .search-input {
+                    width: 100%;
+                    border-top-right-radius: 60px;
+                    border-bottom-right-radius: 30px;
+                }
+                .search-btn{
+                    width: 100%;
+                    position: static;
+                    margin-top: 10px;
+                }
             }
         }   
-
-        .first-screen-tips {
-            transform: translate(-50%, -50%);
-        }
-
-       .leaves-2 {
-            top: 370px;
-       }
-    }
-
-    .second-screen .leaves-1 {
-        display: none;
-    }
-}
-
-
-@media(max-width: 440px) {  
-    .first-screen {
-      
-        .info {
-            margin-top: 90px;
-            .search-dox {
-                margin-top: 280px;
-            }
-        }
 
         .first-screen-tips {
             transform: translate(-50%, 40%)
         }
 
-        .first-screen .leaves-2 {
+       .leaves-2 {
             top: 450px;
-        }
-    }
-    
-}
-
-@media(max-width:1450px) {
-    .recipecSection {
-        padding: 0 30px;
-    }
-}
-
-
-@media(max-width:1350px) {
-    .recipecSection-list {
-       justify-content: space-between;
-    }
-    .recipecSection-list .recipe-block {
-        .recipe-title {
-            left: 31px;
-        }
-    }
-    .recipecSection-list .recipe-block:nth-child(4) {
-        display: none;
-    }
-}
-
-@media(max-width:1110px) {
-    .recipecSection-list {
-        justify-content: space-around;
-        // .recipe-block {
-        //     width: 336px;
-        // }
-    }
-    
-    .recipecSection-list .recipe-block:nth-child(3) {
-        display: none;
-    }
-}
-
-@media(max-width:1040px) {
-    .recipecSection-title {
-        display: none;
-    }
-
-    .recipecSection-btn {
-        display: none;
-    }
-    
-    .recipecSection-list {
-        justify-content: space-around;
-    }
-
-    .recipecSection-list .recipe-block:nth-child(3) {
-        display: none;
-    }
-}
-
-@media(max-width:800px) {
-    .recipecSection-list .recipe-block {
-       @include size(286px, 250px);
-       & .recipe-title {
-        height: 49px;
-        padding: 12px;
-        font-size: 14px;
-        @include positionTopLeft(absolute, 184px, 6px);
        }
+    }
+
+    .second-screen .leaves-1 {
+        display: none;
     }
 }
 
@@ -459,6 +442,12 @@
             font-size: 14px;
             @include positionTopLeft(absolute, 184px, 6px);
        }
+    }
+
+    .second-screen .leaves-1 {
+        height: 425px;
+        @include rePostionTopLeft(2020px, -90px, absolute);
+        transform: rotate(100deg);
     }
 }
 

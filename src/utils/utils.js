@@ -41,7 +41,7 @@ export function generateUrl(path, query) {
 }
 
 export function ellipsisText(str, length = 24) {
-    if(str.length > length) {
+    if(str?.length > length) {
         return str.slice(0, length) + '...';
     }
     return str;

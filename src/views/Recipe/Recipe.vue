@@ -1,9 +1,9 @@
 <template>
-    <div class="first-screen">
+    <div class="title-desc">
         <TheHeader></TheHeader>
-        <div class="first-screen_content">
+        <div class="title-desc_content">
             <h1 class="title title-big">{{ state.recipe.title }}</h1>
-            <p class="desc-recep" v-html="getSummary"></p>
+            <p  v-html="getSummary" class="desc-recep"></p>
             <div class="time"><div class="icon-clock svg"></div> {{ state.recipe.readyInMinutes }} min</div>
         </div>
     </div>
@@ -19,11 +19,9 @@
                     <p> {{ instruction.step }}</p>
                 </li>
             </ul>
-            <img :src="getImgRecepe" alt="">
+            <img :src="getImgRecipe" alt="recipe">
         </div>
-
     </div>
-
     <TheFooter></TheFooter>
 </template>
 
@@ -32,8 +30,8 @@ import IngredientsSection from '../../components/IngredientsSection/IngredientsS
 import TheHeader from '../../components/TheHeader/TheHeader.vue';
 import TheFooter from '../../components/TheFooter/TheFooter.vue';
 
-import { reactive, computed } from 'vue';
-import {  useRoute } from 'vue-router';
+import { onMounted, reactive, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 
 
@@ -41,24 +39,29 @@ export default {
     
     setup() {
         const route = useRoute();
-        const store = useStore()
+        const store = useStore();
 
         const state = reactive({
-            recipe: {}
-        })
+            recipe: {
+                extendedIngredients: []
+            }
+        });
 
-        const getInfoRecepe = async () => {
+        onMounted(() => {
+            getInfoRecipe();
+        });
+
+        const getInfoRecipe = async () => {
             const idRecipe = route.params.id; 
             await store.dispatch('recipes/requrstRecipe', idRecipe);
             state.recipe = {...store.getters['recipes/getRecipe']};
         };
 
-        const getImgRecepe = computed(() => {
+        const getImgRecipe = computed(() => {
             return state.recipe.image;
         });
 
         const getInstructions = computed(() => {
-            console.log(state.recipe?.analyzedInstructions);
             if(state.recipe?.analyzedInstructions) {
                 return state.recipe?.analyzedInstructions[0].steps;
             }
@@ -71,16 +74,13 @@ export default {
                 summary = summary.split('.').slice(0, 1).join('') + '.';
             }
             return summary;
-        })
-
-        getInfoRecepe();
-
+        });
 
         return {
             state,
             getSummary,
             getInstructions,
-            getImgRecepe
+            getImgRecipe
         }
 
     },

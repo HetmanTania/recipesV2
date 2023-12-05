@@ -25,7 +25,7 @@
 
         .btn-edit {
             @include size(24px, 24px);
-            @include positionTopLeft(absolute, 170px, 280px);
+            @include positionTopLeft(absolute, 170px,  54%);
             background-color: $green;
             border-radius: 50%;
             transition: .3s;

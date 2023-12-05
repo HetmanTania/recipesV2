@@ -2,7 +2,7 @@ export const MAIN_URL = 'https://api.spoonacular.com/recipes/';
 export const INGREDIENTS_URL = 'https://spoonacular.com/cdn/ingredients';
 
 
-export const API_KEY = '52f1014614c940d28129c16f71cff37e'; // '5e3b32cfcce1458a8ea0cb13effdad13' "52f1014614c940d28129c16f71cff37e"; ///52f1014614c940d28129c16f71cff37e ///5e3b32cfcce1458a8ea0cb13effdad13
+export const API_KEY = '5e3b32cfcce1458a8ea0cb13effdad13'; // '5e3b32cfcce1458a8ea0cb13effdad13' "52f1014614c940d28129c16f71cff37e"; ///52f1014614c940d28129c16f71cff37e ///5e3b32cfcce1458a8ea0cb13effdad13
 
 export const MEALTYPES = {
     'main course': {
@@ -47,4 +47,6 @@ export const MEALTYPES = {
     },
 }
 
-// export const MEALTYPES = ['Main Course', 'Side Dish','Appetizer','Salad','Soup','Snack','Dessert','Breakfast','Sauce','Drink'];
+export const ERRORS_APP = {
+    'auth/email-already-in-use' : 'Email already in use'
+}

@@ -4,6 +4,7 @@
     @include positionTopLeft(absolute, 0px, 0px);
     background-color: rgba(0, 0, 0, 0.20);
     z-index: 10;
+    overflow-y: hidden;
 }
 
 .wapper-dialog {
@@ -33,4 +34,18 @@
         @include positionTopLeft(absolute, 10px, 90%);
         cursor: pointer;
     }
+}
+
+@media(max-width: 550px) {
+    .dialog {
+        width: 90%;
+        min-width: 90%;
+
+        padding: 50, 30px;
+        
+        .icon-close {
+            left: 85%;
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
-import {generateUrl, toLowerCase} from '../utils/utils.js'
 import axios from 'axios';
+import {generateUrl, toLowerCase} from '../utils/utils.js'
+
 export default {
     namespaced: true,
     state: {
@@ -37,10 +38,7 @@ export default {
             }
         },
         async requrstRecipesLists({ dispatch, commit }, {search, count, offset}) {
-            console.log('requrstRecipesLists', offset);
-
             search = toLowerCase(search);
-
             let url = generateUrl('complexSearch',`type=${search}&number=${count}&offset=${offset}`);
            
             const result = await dispatch('doRequestRecipes', url);
@@ -80,7 +78,6 @@ export default {
 
         },
         async requrstRecipe({commit}, id) {
-            console.log('requrstRecipe');
             if(id) {
                 try {
                     const url = generateUrl(`/${id}/information`);

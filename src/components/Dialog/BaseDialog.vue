@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import useOpenClose from '../../composable/useOpenClose';
+import useOpenClose from '../../composable/useOpenClose.js';
+
 import { computed, watch } from 'vue';
 
 export default {
@@ -20,38 +21,40 @@ export default {
         isOpenDialog: {
             type: Boolean
         },
-      
     },
+    emits: ["closeDialog"],
     setup(props, context) {
         let dialogOpenColose = useOpenClose();
         
-        const isOpen = computed(() => {
-            return dialogOpenColose.isOpen.value;
-        });
-
-
-        const isOpenDialogFromParent = computed(() => {
-            return props.isOpenDialog
-        })
-
         const close = () => {
             dialogOpenColose.close()
             context.emit('closeDialog');
         }
 
+        const isOpen = computed(() => {
+            return dialogOpenColose.isOpen.value;
+        });
+
+        const isOpenDialogFromParent = computed(() => {
+            return props.isOpenDialog
+        });
+
         watch(isOpenDialogFromParent, (newValue) => {
             if(newValue) {
                 dialogOpenColose.open();
+                document.body.style.overflow = 'hidden';
             }
             else {
                 dialogOpenColose.close();
+                document.body.style.overflow = 'auto';
             }
         });
 
         return {
-            
             dialogOpenColose,
+
             close,
+            
             isOpen,
         }
     }

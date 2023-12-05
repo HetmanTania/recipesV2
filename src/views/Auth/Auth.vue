@@ -3,8 +3,8 @@
       <div class="registrationAuth__form">
           <form class="form form-grey" action="">
               <h1 class="registrationAuth__title title title-small title-white">Sing In</h1>
-              <input-text v-model.lazy="state.email" :isError="isEmailСorrect" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
-              <input-password v-model="state.password" :isError="isPasswordСorrect" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
+              <input-text v-model.lazy="state.email" :isError="isEmailCorrect" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
+              <input-password v-model="state.password" :isError="isPasswordCorrect" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
               <button @click.prevent="submit" type="submit" class="registrationAuth__submit btn btn-green">Sing In</button>
           </form>
         <router-link to="registration" class="registrationAuth__refSingIn">Registration</router-link>
@@ -49,20 +49,18 @@ export default {
       }
     }
     else if(!state.email.length) { 
-      console.log('email');
       state.error.errorEmail = true;
     }
     else if(!state.password.length) {
-      console.log('pasword');
       state.error.errorParword = true;
     }
   }
 
-  const isPasswordСorrect = computed(() => {
+  const isPasswordCorrect = computed(() => {
     return state.error.errorParword;
   });
 
-  const isEmailСorrect = computed(() => {
+  const isEmailCorrect = computed(() => {
     return state.error.errorEmail;
   });
 
@@ -73,8 +71,8 @@ export default {
   return {
     state,
     submit,
-    isEmailСorrect,
-    isPasswordСorrect
+    isEmailCorrect,
+    isPasswordCorrect
   }
 },
 components: { InputText, InputPassword },
