@@ -1,8 +1,8 @@
 export const MAIN_URL = 'https://api.spoonacular.com/recipes/';
 export const INGREDIENTS_URL = 'https://spoonacular.com/cdn/ingredients';
 
-
-export const API_KEY = '5e3b32cfcce1458a8ea0cb13effdad13'; // '5e3b32cfcce1458a8ea0cb13effdad13' "52f1014614c940d28129c16f71cff37e"; ///52f1014614c940d28129c16f71cff37e ///5e3b32cfcce1458a8ea0cb13effdad13
+console.log( process.env, ' process.env.');
+export const API_KEY = process.env.VUE_APP_API_KEY;
 
 export const MEALTYPES = {
     'main course': {

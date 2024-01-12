@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs');
 
 module.exports = {
     devServer: {
@@ -7,5 +7,5 @@ module.exports = {
           cert: fs.readFileSync('./certs/example.com+5.pem'),
         },
         public: 'https://localhost:8080/'
-    }
+    },
 }
