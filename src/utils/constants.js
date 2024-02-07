@@ -1,7 +1,6 @@
 export const MAIN_URL = 'https://api.spoonacular.com/recipes/';
 export const INGREDIENTS_URL = 'https://spoonacular.com/cdn/ingredients';
 
-console.log( process.env, ' process.env.');
 export const API_KEY = process.env.VUE_APP_API_KEY;
 
 export const MEALTYPES = {
@@ -48,5 +47,28 @@ export const MEALTYPES = {
 }
 
 export const ERRORS_APP = {
-    'auth/email-already-in-use' : 'Email already in use'
+    userInput: {
+        'invalid-name': 'The username must contain from 3 to 10 characters of the Latin alphabet',
+        'invalid-email': 'The mailing address must contain from 3 to 10 characters of the Latin alphabet in the format example@example.com',
+        'invalid-password': 'The password must contain symbols and/or numbers',
+    },
+    password: {
+        'auth/wrong-password': 'Your password is incorrect',
+        'empty-password': 'Enter your email',
+    },
+    email: {
+        'auth/user-not-found': 'User with this email was not found',
+        'auth/invalid-email': 'Your email is incorrect',
+        'auth/email-already-in-use' : 'Email already in use',
+        'empty-email': 'Enter your email',
+    },
+    globalError: {
+        'auth/user-disabled': 'The user account has been disabled by the administrator',
+        'auth/too-many-requests': 'There were too many failed login attempts. Temporary login ban',
+        'auth/internal-error': 'Firebase internal server error',
+    },
+    defaultError: {
+        'default': 'An error occurred, please try later'
+    }
 }
+
