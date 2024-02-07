@@ -45,19 +45,16 @@
 
 }
 
+
+
 .icon {
     @include size(19px, 18px);
-    @include positionTopLeft(relative, 40px, 20px);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-}
 
-.input-error {
-    @include positionTopLeft(absolute, 40px, 90%);
-    opacity: 0;
-
-    &.show {
-        opacity: 1;
+    &-email, &-lock {
+        @include positionTopLeft(relative, 40px, 20px);
     }
 }
+

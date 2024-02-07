@@ -3,10 +3,10 @@
     <div class="registrationAuth__form">
         <form class="form form-grey" action="">
             <h1 class="registrationAuth__title title title-small title-white">Registration</h1>
-            <input-text v-model.lazy="state.name" :isError="state.error.errorName" clases="registrationAuth__input input" placeholder="Name" icon="user"></input-text>
-            <input-text v-model.lazy="state.email" :isError="state.error.errorEmail" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
-            <input-password v-model.lazy="state.password" :isError="state.error.errorParword" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
-            <div v-if="state.error.errorReg.value" class="error-text">{{ state.error.errorReg.text }}</div>
+            <input-text v-model.lazy="state.name" :error="nameError.error"  clases="registrationAuth__input input" placeholder="Name" icon="user"></input-text>
+            <input-text v-model.lazy="state.email" :error="emailError.error" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
+            <input-password v-model.lazy="state.password" :error="passwordError.error" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
+            <div v-if="globalError.error.isError" class="error-text">{{ globalError.error.text }}</div>
             <button @click.prevent="submit" type="submit" class="registrationAuth__submit btn btn-green">Registration</button>
           </form>
       <router-link to="signIn" class="registrationAuth__refSingIn">Sign in</router-link>
@@ -21,8 +21,9 @@
 import InputText from '../../components/InputText/InputText.vue'
 import InputPassword from '../../components/InputPassword/InputPassword.vue';
 
-import { cheackName, cheackEmail, cheackPassword } from '../../utils/utils';
 import { ERRORS_APP } from '../../utils/constants';
+import userError from '../../composable/useError.js';
+import { cheackUserName, cheackEmail, cheackPassword, isFirebaseError } from '../../utils/validators.js';
 
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
@@ -36,55 +37,87 @@ export default {
       name: '',
       email: '',
       password: '',
-      error: {
-        errorName: false,
-        errorParword: false,
-        errorEmail: false,
-        errorReg: {
-          value: false,
-          text : ''
-        }
-      }
     });
 
+    
+    const { password: passwordErrors, email: emailErrors, global: globalErrors,
+      userInput: userInputErrors, defaultError} = ERRORS_APP;
+
+    const nameError = userError();
+    const emailError = userError();
+    const passwordError = userError();
+    const globalError = userError();
 
     const submit = async () => {
-      cheackData();
-      if(isDataCorrent.value) {
-        try {
-          const formData = {
-            name: state.name,
-            email: state.email,
-            password: state.password
-          }
-          await store.dispatch('register', formData);
-          router.push('/');
+      if(!isDataCorrent.value) {
+        setErrorsIfDataIncorect();
+        return;
+      }
+      
+      emailError.resetError();
+      passwordError.resetError();
+      nameError.resetError();
+      globalError.resetError();
+      
+      const formData = {
+        name: state.name,
+        email: state.email,
+        password: state.password
+      }
+
+      try {
+        await store.dispatch('register', formData);
+        router.push('/');
+      }
+      catch(error) {
+        firebaseErrorsHendler(error);
+      }
+    };
+    
+    const firebaseErrorsHendler = (error) => {
+      if(isFirebaseError(error.name)) {
+        if (emailErrors[error.code]) {
+          emailError.setError(emailErrors[error.code]);
         }
-        catch(e) {
-          state.error.errorReg.value = true;
-          state.error.errorReg.text =  ERRORS_APP[e.code];
+        else if (passwordErrors[error.code]) {
+          passwordError.setError(passwordErrors[error.code]);
+        }
+        else if(globalErrors[error.code]){
+          globalError.setError(globalErrors[error.code]);
+        }
+        else {
+          globalError.setError(defaultError['default']);
         }
       }
     }
 
-    const cheackData = () => {
-      state.error.errorName = !cheackName(state.name);
-      state.error.errorEmail = !cheackEmail(state.email);
-      state.error.errorParword = !cheackPassword(state.password);
-    }
+    const setErrorsIfDataIncorect = () => {
+      if(!cheackUserName(state.name)) {
+        nameError.setError(userInputErrors['invalid-name']);
+      }
+      if(!cheackEmail(state.email)) {
+        emailError.setError(userInputErrors['invalid-email']);
+      }
+      if(!cheackPassword(state.name)) {
+        passwordError.setError(userInputErrors['invalid-password']);
+      }
+    };
 
     const isDataCorrent = computed(() => {
-      return  cheackName(state.name) && cheackEmail(state.email) && cheackPassword(state.password);
-    })
-
+      return cheackUserName(state.name) && cheackEmail(state.email) && cheackPassword(state.password);
+    });
+    
     return {
+      nameError,
+      emailError,
+      passwordError,
+      globalError,
+
       state,
       submit,
     }
   },
-
   components: { InputText, InputPassword },
-
 }
 </script>
 

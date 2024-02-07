@@ -3,8 +3,9 @@
       <div class="registrationAuth__form">
           <form class="form form-grey" action="">
               <h1 class="registrationAuth__title title title-small title-white">Sing In</h1>
-              <input-text v-model.lazy="state.email" :isError="isEmailCorrect" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
-              <input-password v-model="state.password" :isError="isPasswordCorrect" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
+              <input-text :error="emailError.error" v-model.lazy="state.email" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
+              <input-password :error="passwordError.error" v-model="state.password" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
+              <div v-if="globalError.error.isError" class="error-text">{{ globalError.error.text }}</div>
               <button @click.prevent="submit" type="submit" class="registrationAuth__submit btn btn-green">Sing In</button>
           </form>
         <router-link to="registration" class="registrationAuth__refSingIn">Registration</router-link>
@@ -18,7 +19,12 @@
 
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'
-import { computed, reactive } from 'vue'
+import { reactive, computed } from 'vue' 
+
+import userError from '../../composable/useError.js';
+import { ERRORS_APP } from '../../utils/constants.js';
+import { isFirebaseError, isNotEmptyString } from '../../utils/validators.js';
+
 import InputText from '../../components/InputText/InputText.vue';
 import InputPassword from '../../components/InputPassword/InputPassword.vue';
 
@@ -26,53 +32,87 @@ export default {
  setup() {
   const router = useRouter();
   const store = useStore();
+
   const state = reactive( {
       email: '',
       password: '',
-      error: {
-        errorParword: false,
-        errorEmail: false,
-      }
   });
 
+  const emailError = userError();
+  const passwordError = userError();
+  const globalError = userError();
+
+  const { password: passwordErrors, email: emailErrors, global: globalErrors, defaultError} = ERRORS_APP;
+
   const submit = async () => {
-    if(isDataCorrent.value) {
-      const formData = {
-        email: state.email,
-        password: state.password
-      }
-      try {
-        await store.dispatch('login', formData);
-        router.push('/');
-      } catch (e) {
-        console.log(e);
-      }
+    if (!isDataNotEmpty.value) {
+      setErrorsIfDataIncorect();
+      return;
     }
-    else if(!state.email.length) { 
-      state.error.errorEmail = true;
+
+    const formData = {
+      email: state.email,
+      password: state.password
     }
-    else if(!state.password.length) {
-      state.error.errorParword = true;
+    
+    emailError.resetError();
+    passwordError.resetError();
+    globalError.resetError();
+
+    try {
+      await store.dispatch('login', formData);
+      router.push('/');
+    }
+    catch (error) {
+      firebaseErrorsHendler(error);
     }
   }
 
-  const isPasswordCorrect = computed(() => {
-    return state.error.errorParword;
+  const firebaseErrorsHendler = (error) => {
+    if (isFirebaseError(error.name)) {
+      if (emailErrors[error.code]) {
+        emailError.setError(emailErrors[error.code]);
+      }
+      else if (passwordErrors[error.code]) {
+        passwordError.setError(passwordErrors[error.code]);
+      }
+      else if(globalErrors[error.code]){
+        globalError.setError(globalErrors[error.code]);
+      }
+      else {
+        globalError.setError(defaultError['default']);
+      }
+    }
+  }
+
+  const setErrorsIfDataIncorect = () => {
+    if(!isPasswordNotEmpty.value) {
+        passwordError.setError(passwordErrors['empty-password']);
+      }
+      if(!isEmailNotEmpty.value) {
+        emailError.setError(emailErrors['empty-email']);
+      }
+  }
+
+  const isPasswordNotEmpty = computed(() => {
+    return isNotEmptyString(state.password);
   });
 
-  const isEmailCorrect = computed(() => {
-    return state.error.errorEmail;
+  const isEmailNotEmpty = computed(() => {
+    return isNotEmptyString(state.email);
   });
 
-  const isDataCorrent = computed(() => {
-    return state.email.length && state.password.length;
+  const isDataNotEmpty = computed(() => {
+    return isEmailNotEmpty.value && isPasswordNotEmpty.value;
   });
 
   return {
+    emailError, 
+    passwordError,
+    globalError,
+
     state,
     submit,
-    isEmailCorrect,
-    isPasswordCorrect
   }
 },
 components: { InputText, InputPassword },

@@ -20,22 +20,11 @@ export default {
     },
     actions: {
         async login(_, {email, password}) {
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-            } catch (e) {
-                console.log(e);
-                throw e
-            }
+            await signInWithEmailAndPassword(auth, email, password);
         },
         async register({getters}, {email, password, name}) {
-            try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                await set(ref(database, `/user/${getters.getUId}/info` ), { name });
-
-            } catch (e) {
-                console.log(e);
-                throw e;
-            }
+            await createUserWithEmailAndPassword(auth, email, password);
+            await set(ref(database, `/user/${getters.getUId}/info` ), { name });
         },
         async logout({commit}) {
             console.log('logout');
