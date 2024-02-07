@@ -54,7 +54,7 @@ export const ERRORS_APP = {
     },
     password: {
         'auth/wrong-password': 'Your password is incorrect',
-        'empty-password': 'Enter your email',
+        'empty-password': 'Enter your password',
     },
     email: {
         'auth/user-not-found': 'User with this email was not found',
