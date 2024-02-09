@@ -10,6 +10,10 @@ export function isNaN(value) {
     return Number.isNaN(value);
 }
 
+export function isBool(value) {
+    return typeof value === 'boolean';
+}
+
 export function isString(value) {
    return typeof value === 'string'
 }

@@ -19,9 +19,9 @@
         </div>
     </div>
     <div class="second-screen">
-        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" >
+        <!-- <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" >
             {{ recipeList }}
-        </recipes-section>
+        </recipes-section> -->
         <router-link class="btn btn-curly btn-curly-greenTransparent btn-categories" to="/categories">Other categories</router-link>
     </div>
     
@@ -31,7 +31,7 @@
 <script>
 import { MEALTYPES } from '../../utils/constants';
 
-import RecipesSection from '../../components/RecipesSection/RecipesSection.vue';
+// import RecipesSection from '../../components/RecipesSection/RecipesSection.vue';
 import TheHeader from '../../components/TheHeader/TheHeader.vue';
 import InputText from '../../components/InputText/InputText.vue';
 import TheFooter from '../../components/TheFooter/TheFooter.vue';
@@ -80,7 +80,7 @@ export default {
         }
 
     },
-    components: { TheHeader, InputText, RecipesSection, TheFooter },
+    components: { TheHeader, InputText, TheFooter },
 }
 </script>
 
