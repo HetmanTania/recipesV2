@@ -1,7 +1,7 @@
 export const MAIN_URL = 'https://api.spoonacular.com/recipes/';
 export const INGREDIENTS_URL = 'https://spoonacular.com/cdn/ingredients';
 
-export const API_KEY = process.env.VUE_APP_API_KEY;
+export const API_KEY = process.env.VUE_APP_API_KEYv2;
 
 export const MEALTYPES = {
     'main course': {

@@ -1,0 +1,61 @@
+.auth-menu {
+    @include flex-center;
+    .auth {
+        @include flex-center;
+        position: relative;
+        cursor: pointer;
+        .avatar {
+            @include size(44px, 44px);
+            margin-right: 10px;
+        }
+    }
+
+    .editProfile {
+        @include size(177px, 134px);
+        @include postionTopRight(absolute, 60px, 40px);
+        @include flex(flex-start, space-between, column);
+        padding: 18px;
+        background-color: $white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 11px 0px rgb(0 0 0 / 10%);
+        z-index: 4;
+        .edit {
+            width: 100%;
+            @include flex(center, space-between);
+            cursor: pointer;
+            p {
+                color: $black-gray;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22.4px;
+            }
+
+            .svg {
+                @include size(14px, 14px);
+            }
+        }
+
+        .icon-edit {
+            cursor: pointer;
+        }
+        .btn-curly {
+            padding: 12px 35px;
+        }
+    }
+
+
+    .bg-Profile {
+        @include size(100vw, 100vh);
+        @include positionTopLeft(absolute, -10px, 0px);
+        background-color: transparent;
+        z-index: -1;
+    }
+  
+    .icon-menu {
+        display: none;
+        margin-left: 50px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    
+}

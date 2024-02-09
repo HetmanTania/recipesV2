@@ -226,10 +226,10 @@ footer {
     @include bg-img('assets/svg/clock.svg');
 }
 
-
 .icon-menu {
     @include size(32px, 32px);
     @include bg-img('assets/svg/menu.svg');
+    cursor: pointer;
 }
 .text-green {
     color: $green;
