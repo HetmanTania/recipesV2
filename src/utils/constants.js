@@ -1,9 +1,12 @@
+import { gsap } from "gsap";
+import { CustomEase } from "gsap/CustomEase";
+
 export const MAIN_URL = 'https://api.spoonacular.com/recipes/';
 export const INGREDIENTS_URL = 'https://spoonacular.com/cdn/ingredients';
 
 export const API_KEY = process.env.VUE_APP_API_KEYv2;
 
-export const MEALTYPES = {
+export const MEAL_TYPES = {
     'main course': {
         title: "Main Course",
         value: 'main course'
@@ -72,3 +75,6 @@ export const ERRORS_APP = {
     }
 }
 
+gsap.registerPlugin(CustomEase);
+export const ANIMATION_EASY = CustomEase.create("custom", 
+                    "M0,0 C0.016,0 0.486,0.034 0.532,0.073 0.702,0.217 0.628,0.631 0.797,0.878 0.888,1.012 1,1 1,1 ");

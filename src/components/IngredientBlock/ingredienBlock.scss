@@ -1,4 +1,4 @@
-.ingredien-block {
+.ingredient-block {
     @include size(100%, 182px);
     padding: 24px 70px;
     margin: 24px 0;
@@ -30,7 +30,7 @@
         }
     }
 
-    .amount-cheack {
+    .amount-check {
         width: 200px;
         @include flex(center, space-between);
 
@@ -46,17 +46,13 @@
 }
 
 @media(max-width: 880px) { 
-    .ingredien-block {
+    .ingredient-block {
         padding: 24px 20px;
     }
-
-  
-
-    
 }
 
 @media(max-width: 790px) {
-    .ingredien-block {
+    .ingredient-block {
 
         .img-name {
             .title {
@@ -75,10 +71,10 @@
 
 @media(max-width: 670px) {
     
-    .ingredien-block {
+    .ingredient-block {
         padding: 0 20px;
 
-        .ingredien-block__inner {
+        .ingredient-block__inner {
             flex-direction: column;
             align-items: flex-end;
             justify-content: space-evenly;
@@ -96,7 +92,7 @@
 
 
 @media(max-width: 450px) {
-    .ingredien-block {
+    .ingredient-block {
         .img-name {
             .img {
                 min-width: 88px;
@@ -110,7 +106,7 @@
                 font-size: 14px;
             }
         }
-        .amount-cheack {
+        .amount-check {
             width: 100%;
             .amount {
                 font-size: 14px;
@@ -120,7 +116,7 @@
 }
 
 @media(max-width: 400px) {
-    .ingredien-block {
+    .ingredient-block {
         height: 232px;  
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="input-wrapper">
+    <div class=" mt-6 input-wrapper">
         <div v-if="iconPath?.length" :style="{ backgroundImage: `url(${iconPath})` }" class="icon icon-email" ></div>
         <input :value="modelValue" @change="updateValue" :class="getClassInput" :placeholder="placeholder" type="text"/>
         <ErrorItem :text="getErrorText" :isShow="error?.isError"></ErrorItem>
@@ -9,7 +9,7 @@
 <script>
 import ErrorItem from '../ErrorItem/ErrorItem.vue';
 import useInput from '../../composable/useInput.js'
-import { cheackErrorText } from '../../utils/validators.js';
+import { checkErrorText } from '@/utils/validators.js';
 import { computed } from 'vue';
 
 export default {
@@ -18,7 +18,7 @@ export default {
             type: String,
             required: false,
         },
-        clases: {
+        classes: {
             type: String,
             required: true
         },
@@ -43,7 +43,7 @@ export default {
         }
 
         const getErrorText = computed(() => {
-            return cheackErrorText(props.error?.text);
+            return checkErrorText(props.error?.text);
         });
 
         return {

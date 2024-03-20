@@ -1,14 +1,9 @@
 import {MAIN_URL, API_KEY} from './constants.js';
 
-
-
 export function getImageFormats(name) {
     const imgRegex = /\.(.*)/;
     return name.match(imgRegex)[0];
 }
-
-
-
 
 export function generateUrl(path, query) {
     if(query) query = query.toLowerCase();

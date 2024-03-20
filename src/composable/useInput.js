@@ -9,7 +9,7 @@ export default function useInput(props) {
     });
     
     const getClassInput = computed(() => {
-        return `${props.clases} ${props.error?.isError ? 'error' : ''}`;
+        return `${props.classes} ${props.error?.isError ? 'error' : ''}`;
     })
 
 

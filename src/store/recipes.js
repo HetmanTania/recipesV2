@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {generateUrl, toLowerCase} from '../utils/utils.js'
+import {generateUrl, toLowerCase} from '@/utils/utils.js'
 
 export default {
     namespaced: true,
@@ -9,7 +9,7 @@ export default {
         infoPagination: {}
     },
     mutations: {
-        addItemsToRcipesLists(state, date) {
+        addItemsToRecipesLists(state, date) {
             if(date.items.length) {
                 state.recipesLists[date.title] = {items: date.items};
             } 
@@ -37,7 +37,7 @@ export default {
                 console.log(e);
             }
         },
-        async requrstRecipesLists({ dispatch, commit }, {search, count, offset}) {
+        async requestRecipesLists({ dispatch, commit }, {search, count, offset}) {
             search = toLowerCase(search);
             let url = generateUrl('complexSearch',`type=${search}&number=${count}&offset=${offset}`);
            
@@ -53,12 +53,12 @@ export default {
                     count: result.number, 
                     offset: result.offset 
                 };
-                commit('addItemsToRcipesLists', items);
+                commit('addItemsToRecipesLists', items);
                 commit('setInfoPagination', infoPagination);
             }
             
         },
-        async requestSerch({dispatch, commit}, {search, count, offset}) {
+        async requestSearch({dispatch, commit}, {search, count, offset}) {
             search = toLowerCase(search);
             const url = generateUrl('complexSearch',`query=${search}&number=${count}&offset=${offset}`);            
             const result = await dispatch('doRequestRecipes', url);
@@ -72,12 +72,12 @@ export default {
                     count: result.number, 
                     offset: result.offset 
                 };
-                commit('addItemsToRcipesLists', items);
+                commit('addItemsToRecipesLists', items);
                 commit('setInfoPagination', infoPagination);
             }
 
         },
-        async requrstRecipe({commit}, id) {
+        async requestRecipe({commit}, id) {
             if(id) {
                 try {
                     const url = generateUrl(`/${id}/information`);

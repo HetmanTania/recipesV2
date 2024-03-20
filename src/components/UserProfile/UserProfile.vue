@@ -1,11 +1,12 @@
 <template>
-    <div @click="openEditLogoutDialog" class="auth-menu">
+    <div ref="authMenu" @click="openEditLogoutDialog"  class="auth-menu">
         <div class="header_wrapper-auth-theme">
-            <div class="auth">
+            <div  class="auth">
                 <img :src="userAvatar" width="44" alt="avatar" class="auth_avatar avatar" />
                 <div class="auth_login">{{ userName }}</div>
             </div>
-            <EditLogoutDialog @close="closeEditLogoutDialog" :isOpen="editLogoutDialogOpenClose.isOpen.value" ></EditLogoutDialog>
+            <EditLogoutDialog @close="closeEditLogoutDialog" :isOpen="editLogoutDialogOpenClose.isOpen.value"></EditLogoutDialog>
+            <!-- @close="closeEditLogoutDialog" :isOpen="editLogoutDialogOpenClose.isOpen.value" -->
         </div>
     </div>
 </template>
@@ -15,12 +16,13 @@
 import EditLogoutDialog from '../EditLogoutDialog/EditLogoutDialog.vue';
 
 import useOpenClose from '../../composable/useOpenClose';
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex';
 
 export default {
     setup() {
         const store = useStore();   
+        const authMenu = ref(null);
 
         const editLogoutDialogOpenClose = useOpenClose();
 
@@ -36,8 +38,11 @@ export default {
             return store.getters.getUserName;
         });
 
-        const openEditLogoutDialog = () => {
-            editLogoutDialogOpenClose.open();
+        const openEditLogoutDialog = (e) => {
+            // if(e.target === authMenu.value) {
+                editLogoutDialogOpenClose.open();
+            // }
+            console.log(e);
         }
         const closeEditLogoutDialog = () => {
             editLogoutDialogOpenClose.close();
@@ -46,6 +51,8 @@ export default {
         return {
             userAvatar,
             userName,
+
+            authMenu,
 
             editLogoutDialogOpenClose,
             openEditLogoutDialog,
@@ -60,5 +67,5 @@ export default {
 <style lang="scss">
 @import '../../style/var.scss';
 @import '../../style/mixin.scss';
-@import './userProfil.scss';
+@import 'userProfile';
 </style>

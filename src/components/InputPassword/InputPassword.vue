@@ -9,7 +9,7 @@
 <script>
 import ErrorItem from '../ErrorItem/ErrorItem.vue';
 import useInput from '../../composable/useInput.js';
-import { cheackErrorText } from '../../utils/validators.js';
+import { checkErrorText } from '@/utils/validators.js';
 import { computed } from 'vue';
 export default {
     props: {
@@ -17,7 +17,7 @@ export default {
             type: String,
             required: true
         },
-        clases: {
+        classes: {
             type: String,
             required: true
         },
@@ -41,7 +41,7 @@ export default {
         }
 
         const getErrorText = computed(() => {
-            return cheackErrorText(props.error.text);
+            return checkErrorText(props.error.text);
         });
 
         return {

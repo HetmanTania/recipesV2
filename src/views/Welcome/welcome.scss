@@ -8,7 +8,7 @@
         @include flex-center(column);
     }
 
-    .welcom__logo {
+    .welcome__logo {
         img {
             @include size(64px, 64px);
         }

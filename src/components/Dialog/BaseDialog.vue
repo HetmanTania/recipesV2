@@ -1,8 +1,7 @@
 <template>
-    <div v-if="isOpen" class="bg-dialog" @click.stop="close"></div>
-        <div class="wapper-dialog" v-if="isOpen">
-        <div class="dialog">
-            <div @click="close" class="icon-close svg"></div>
+    <div ref="currentWrapper" @click.self="close" class="wrapper-dialog">
+        <div ref="currentDialog" class="dialog">
+            <div @click.self="close" class="icon-close svg"></div>
             <slot name="header"></slot>
             <slot name="content"></slot>
             <slot name="footer"></slot>
@@ -12,50 +11,64 @@
 </template>
 
 <script>
-import useOpenClose from '../../composable/useOpenClose.js';
+import {  ref, watch } from 'vue';
+import { gsap } from "gsap";
 
-import { computed, watch } from 'vue';
+import { isBool } from '@/utils/validators';
+import { ANIMATION_EASY } from '@/utils/constants';
 
 export default {
     props: {
         isOpenDialog: {
-            type: Boolean
-        },
+            default: false,
+            type: Boolean,
+            validator: isBool
+       }
     },
-    emits: ["closeDialog"],
-    setup(props, context) {
-        let dialogOpenColose = useOpenClose();
-        
+    emits: ["close"],
+    setup(props, context) { //props, context
+        const currentWrapper = ref(null);
+        const currentDialog = ref(null);
+
         const close = () => {
-            dialogOpenColose.close()
-            context.emit('closeDialog');
+            context.emit('close');
+            animateClose();
         }
 
-        const isOpen = computed(() => {
-            return dialogOpenColose.isOpen.value;
-        });
-
-        const isOpenDialogFromParent = computed(() => {
-            return props.isOpenDialog
-        });
-
-        watch(isOpenDialogFromParent, (newValue) => {
+        watch(() => props.isOpenDialog, (newValue) => {
             if(newValue) {
-                dialogOpenColose.open();
-                document.body.style.overflow = 'hidden';
+                animateOpen();
             }
             else {
-                dialogOpenColose.close();
                 document.body.style.overflow = 'auto';
             }
         });
 
-        return {
-            dialogOpenColose,
+        const animateOpen = () => {
+            animate('109vh', '0vh');
+        }
 
+        const animateClose = () => {
+            animate('-110vh', '-100vh');
+        }
+
+        const animate = (yCurrentWrapper, yCurrentDialog) => {
+            const tl = gsap.timeline();
+            tl.to(currentWrapper.value, {
+                y: yCurrentWrapper,
+            });
+            tl.to(currentDialog.value, {
+                y: yCurrentDialog,
+                ease: ANIMATION_EASY,
+                duration: 0.3
+            })
+        }
+
+        return {
             close,
-            
-            isOpen,
+
+            currentWrapper,
+            currentDialog
         }
     }
 }

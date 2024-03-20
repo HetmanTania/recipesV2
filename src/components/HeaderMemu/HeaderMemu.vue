@@ -1,14 +1,14 @@
 <template>
     <div class="menu">
        <div @click="openMenu" class="icon-menu svg"></div>
-       <div :class="getClass">
+       <div class="menu-block">
            <div class="logo-close">
                <div class="logo svg">
                    <img src="../../assets/svg/logo.svg" width="44" alt="logo" />
                </div>
                <div @click="closeMenu" class="icon-close svg"></div>
            </div>
-           <div class="munu-ul">
+           <div class="menu-ul">
                <ul class="list-ul">
                    <li><router-link to="/">Home</router-link></li>
                    <li><router-link to="/categories">Categories</router-link></li>
@@ -21,27 +21,60 @@
 </template>
 
 <script>
-import useOpenClose from '../../composable/useOpenClose';
-import { computed } from 'vue';
+import { gsap } from "gsap";
+import { ANIMATION_EASY } from '@/utils/constants';
+
+
 export default {
     setup() {
-        const menuOpenClose = useOpenClose();
         const openMenu = () => {
-            menuOpenClose.open();
+          animateOpen();
         };
         const closeMenu = () => {
-            menuOpenClose.close();
+          animateClose();
         }
 
-        const getClass = computed(() => {
-            return `${menuOpenClose.isOpen.value ? 'isOpen' : ''} menu-block`
-        });
+        const animateOpen = () => {
+            const tl = gsap.timeline();
+            tl.to('.menu-block', {
+                autoAlpha: 1,
+                top: 0,
+                ease: ANIMATION_EASY,
+                duration: 0.8
+            });
+            tl.to('.list-ul li a', {
+                opacity: 1,
+                y: -71,
+                rotate: 0,
+                ease: "power2.in",
+                duration: 0.3
+            })
+        }
+
+        const animateClose = () => {
+            const tl = gsap.timeline();
+            tl.to('.list-ul li a', {
+                opacity: 1,
+                y: 66,
+                rotate: 16,
+                ease: "power2.in",
+                duration: 0.3
+            })
+            tl.to('.menu-block', {
+                delay: .6,
+                autoAlpha: 1,
+                top: '-101vh',
+                ease: ANIMATION_EASY,
+                duration: 0.4
+            });
+            
+        }
 
         return {
             openMenu,
             closeMenu,
 
-            getClass,
+            
         }
     }
 }

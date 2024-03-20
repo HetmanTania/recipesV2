@@ -1,29 +1,29 @@
 <template>
-    <div class="ingrediens-block">
-        <div class="ingredien-header">
+    <div class="ingredients-block">
+        <div class="ingredient-header">
             <p>Ingredients</p>
             <div class="number-add">
                 <p>Number</p>
                 <p>Add to list</p>
             </div>
         </div>
-        <IngredienBlock :ingredien="ingredien" v-for="ingredien in ingrediensList" :key="ingredien.id"></IngredienBlock>
+        <IngredientBlock :ingredient="ingredient" v-for="ingredient in ingredientsList" :key="ingredient.id"></IngredientBlock>
     </div>
 </template>
 
 <script>
-import IngredienBlock from '../IngredienBlock/IngredienBlock.vue';
+import IngredientBlock from '../IngredientBlock/IngredienBlock.vue';
 
 export default {
     props: {
-        ingrediensList: {
+        ingredientsList: {
             type: Array,
             required: true
         }
     },
     setup() {
     },
-    components: { IngredienBlock }
+    components: { IngredientBlock }
 }
 </script>
 

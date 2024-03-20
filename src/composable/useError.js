@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { cheackErrorText } from "../utils/validators";
+import { checkErrorText } from "@/utils/validators";
 
 export default function useError() {
     const error = reactive({
@@ -9,7 +9,7 @@ export default function useError() {
 
     const setError = (text) => {
         error.isError = true;
-        error.text = cheackErrorText(text);
+        error.text = checkErrorText(text);
     }
 
     const resetError = () => {
