@@ -1,8 +1,8 @@
-.ingrediens-block {
+.ingredients-block {
     padding: 50px;
     background-color: $white;
 
-    .ingredien-header {
+    .ingredient-header {
         @include size(100%, 60px);
         @include flex(center, space-between);
         padding: 0 40px;
@@ -18,8 +18,8 @@
 }
 
 @media(max-width: 880px) { 
-    .ingrediens-block {
-        .ingredien-header  {
+    .ingredients-block {
+        .ingredient-header  {
             padding: 0 20px;
             .number-add {
                 width: 160px;
@@ -33,13 +33,13 @@
 }
 
 @media(max-width: 570px) {
-    .ingrediens-block {
+    .ingredients-block {
         padding: 20px;
     }
 }
 
 @media(max-width: 450px) {
-    .ingrediens-block .ingredien-header .number-add {
+    .ingredients-block .ingredient-header .number-add {
         display: none;
     }
 }

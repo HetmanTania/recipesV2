@@ -3,9 +3,9 @@
     <main>
         <h1 class="title title-big">Search</h1>
         <h2 class="title title-small">Write a search query</h2>
-        <div class="search-sistem">
-            <div class="search-sistem__wrapper">
-                <InputText v-model="valueSearchText" placeholder="Search" clases="shearch__input curly-input input input-gray"></InputText>
+        <div class="search-system">
+            <div class="search-system__wrapper">
+                <InputText v-model="valueSearchText" placeholder="Search" classes="search__input curly-input input input-gray"></InputText>
                 <button @click="search" class="btn btn-curly btn-curly-green-hoverBlack btn-curly-green">Search</button>
             </div>
         </div>
@@ -43,13 +43,13 @@ export default {
             if(route.query.searchText && route.query.searchText.length) {
                 searchText = route.query.searchText;
                 valueSearchText.value = searchText;
-                await requrstRecipesLists();
+                await requestRecipesLists();
             }
         });
 
         const search = async () => {
             searchText = valueSearchText.value;   
-            await requrstRecipesLists();
+            await requestRecipesLists();
         };
 
         const recipeList = computed(() => {
@@ -60,8 +60,8 @@ export default {
             return store.getters['recipes/getInfoPagination'];
         });
 
-        const requrstRecipesLists = async () => {
-            await store.dispatch('recipes/requestSerch', {search: searchText, count: countRecipes,offset: offset});
+        const requestRecipesLists = async () => {
+            await store.dispatch('recipes/requestSearch', {search: searchText, count: countRecipes,offset: offset});
         }
 
         const changePagination = async (num) => {
@@ -72,7 +72,7 @@ export default {
             else {
                 offset = 0;
             }
-            await requrstRecipesLists();
+            await requestRecipesLists();
         }
 
         return {

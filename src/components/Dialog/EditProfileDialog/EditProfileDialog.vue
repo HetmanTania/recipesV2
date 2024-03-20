@@ -1,5 +1,5 @@
 <template>
-    <BaseDialog @closeDialog="closeDialog">
+    <BaseDialog @click.prevent.stop @close="close" :isOpenDialog="isOpenDialog">
         <template v-slot:content>
             <div class="content">
                 <div class="editAvatar">
@@ -8,7 +8,7 @@
                     <input @change="setUserAvatar" id="file" type="file" accept=".jpg, .jpeg, .png" />
                 </div>
                 <form action="" class="form-hidden">
-                    <InputText v-model="state.userName" :isError="state.errorName" clases="editProfileDialog__input input input-gray" placeholder="User Name" icon="user-black"></InputText>
+                    <InputText v-model="state.userName" :isError="state.errorName" classes="editProfileDialog__input input input-gray" placeholder="User Name" icon="user-black"></InputText>
                     <button @click.prevent="updateUserProfile" type="submit" class="btn btn-green">Save changes</button>
                 </form>
             </div>
@@ -20,14 +20,21 @@
 import BaseDialog from '../BaseDialog.vue';
 import InputText from '../../InputText/InputText.vue';
 
-
-import { cheackName } from '../../../utils/utils';
+import { isBool } from '@/utils/validators';
+import { checkUserName } from '@/utils/validators';
 
 import { useStore } from 'vuex';
 import { reactive, ref } from 'vue';
 
-export default {
-    
+export default { 
+    props: {
+        isOpenDialog: {
+            default: false,
+            type: Boolean,
+            validator: isBool
+        }
+    },
+    emits: ["closeDialog"],
     setup(_, context) {
 
         const store = useStore();
@@ -41,10 +48,10 @@ export default {
         const avatar = ref(null);
         state.userName = store.getters.getUserName;
         state.pathUserAvatar = store.getters.getUserAvatarPhotoURL ?
-         store.getters.getUserAvatarPhotoURL : require('../../../assets/svg/avatar.svg');
+            store.getters.getUserAvatarPhotoURL : require('../../../assets/svg/avatar.svg');
 
-        const cheackUserName = () => {
-            if(cheackName(state.userName)) {
+        const checkName = () => {
+            if(checkUserName(state.userName)) {
                 state.errorName = false;
                 return true;
             }
@@ -74,18 +81,18 @@ export default {
         }
 
         const updateUserProfile = async () => {
-            if (cheackUserName() && state.userName !== store.getters.getUserName) { 
+            if (checkName() && state.userName !== store.getters.getUserName) {
                 await store.dispatch('updateUserName', {userName: state.userName});
-                closeDialog();
+                close();
             }
             if(state.pathUserAvatar !== store.getters.getUserAvatarPhotoURL) {
-                await store.dispatch('updateUserAvatar', {file: state.imgFile, pathServer: 'profil'});
-                closeDialog();
+                await store.dispatch('updateUserAvatar', {file: state.imgFile, pathServer: 'profile'});
+                close();
             }
             
         }
 
-        const closeDialog = () => {
+        const close = () => {
             context.emit('closeDialog');
         }
 
@@ -94,9 +101,9 @@ export default {
             setUserAvatar,
             avatar,
 
-            cheackUserName,
+            checkName,
             updateUserProfile,
-            closeDialog
+            close
         }
     },
     components: { BaseDialog, InputText,}

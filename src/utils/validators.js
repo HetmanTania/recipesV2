@@ -21,7 +21,7 @@ export function isNotEmptyString(value) {
     return isString(value) && value.length > 0;
 }
 
-export function isIndefinedOrNull(value) {
+export function isIndefiniteOrNull(value) {
     return value === null || isUndefined(value);
 }
 
@@ -35,7 +35,7 @@ export function isUndefined(value) {
 
 // -------------------------------------------------------------
 
-export function cheackUserName(name) { 
+export function checkUserName(name) {
     const nameRegex = /^[A-Za-z\s]{3,10}$/;
     if(nameRegex.test(name)) {
         return true;
@@ -43,7 +43,7 @@ export function cheackUserName(name) {
     return false;
 }
 
-export function cheackPassword(password) {
+export function checkPassword(password) {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (passwordRegex.test(password)) {
         return true
@@ -51,7 +51,7 @@ export function cheackPassword(password) {
     return false;
 }
 
-export function cheackEmail(email) {
+export function checkEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; ///^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if(emailRegex.test(email)) {
         return true;
@@ -65,6 +65,6 @@ export function isFirebaseError(error) {
     return isNotEmptyString(error) && error === 'FirebaseError' ? true : false;
 }
 
-export function cheackErrorText(text) {
+export function checkErrorText(text) {
     return isNotEmptyString(text) ? text : 'The data is incorrect';
  }

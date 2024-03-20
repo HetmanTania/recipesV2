@@ -6,11 +6,11 @@ import { auth } from "./firebase/firebase";
 
 let app = null;
 
-auth.onAuthStateChanged((authInfo) => {
+auth.onAuthStateChanged(async (authInfo) => {
     if(!app) {
         app = createApp(App).use(store).use(router).mount('#app');
     }
-    store.dispatch('setAuthInfo', authInfo);
+    await store.dispatch('setAuthInfo', authInfo);
 })
 
 

@@ -4,15 +4,15 @@ main {
         margin: 100px ;
     }
 
-    .tab-sistem {
-        margin-bottom: 50px;
-        overflow-x: scroll;
+        .tab-system {
+            margin-bottom: 50px;
+            overflow-x: scroll;
         
 
-        &::-webkit-scrollbar {
-            height: 3px;
-            background: $light-gray3;
-        }
+            &::-webkit-scrollbar {
+                height: 3px;
+                background: $light-gray3;
+            }
 
         &::-webkit-scrollbar-thumb {
             border-radius: 20px;       
@@ -39,7 +39,7 @@ main {
                     transition: color .4s;
                 }
 
-                &.tab-chaek {
+                &.tab-check {
                     border-top: 3px solid $green;
                     color: $green;
                 }
@@ -50,7 +50,7 @@ main {
 }
 
 @media(max-width:1285px) {
-    main .tab-sistem {
+    main .tab-system {
         .tabs {
             justify-content: flex-start;
         }

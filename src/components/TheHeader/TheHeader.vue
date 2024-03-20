@@ -10,7 +10,7 @@
                     <li class="nav_list-item"><router-link to="/search">Search</router-link></li>
                 </ul>
             </nav>
-            <UserProfil></UserProfil>
+            <UserProfile></UserProfile>
             <HeaderMenu></HeaderMenu>
         </div>
     </header>
@@ -19,11 +19,11 @@
 <script>
 
 
-import UserProfil from '../UserProfil/UserProfil.vue';
+import UserProfile from '../UserProfile/UserProfile.vue';
 import HeaderMenu from '../HeaderMemu/HeaderMemu.vue';
 
 export default {
-    components: { UserProfil, HeaderMenu }
+    components: { UserProfile, HeaderMenu }
 }
 </script>
 

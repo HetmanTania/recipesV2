@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, up
 import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from "firebase/storage";
 import { ref, set } from 'firebase/database';
 
-import { database, auth } from "../firebase/firebase";
+import { database, auth } from "@/firebase/firebase";
 export default {
     state: {
         user: {}
@@ -51,7 +51,7 @@ export default {
                 }
             }
         },
-        async updateUserAvatar({ state , dispatch, commit}, { file, pathServer = "profil"}) {
+        async updateUserAvatar({ state , dispatch, commit}, { file, pathServer = "profile"}) {
             try {
                 if(file && pathServer.length) {
                     await dispatch('uploadImgToServer', {file, pathServer});

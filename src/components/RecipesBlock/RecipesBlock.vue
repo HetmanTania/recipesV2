@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ellipsisText } from '../../utils/utils';
+import { ellipsisText } from '@/utils/utils';
 
 import { computed } from 'vue';
 

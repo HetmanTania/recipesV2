@@ -1,6 +1,6 @@
 <template>
     <div @mouseover.self="showErrorText" @mouseleave="closeErrorText" v-if="isShow" :class="getClassIcon">
-        <div ref="errorIitemText" @mouseleave="closeErrorText" :class="getClassErrorText"> {{ text }}
+        <div ref="errorItemText" @mouseleave="closeErrorText" :class="getClassErrorText"> {{ text }}
             <span class="triangle"></span>
         </div>
     </div>
@@ -24,7 +24,7 @@ export default {
     },
     setup(props) {
         let onIcon = ref(false);
-        const errorIitemText = ref(null);
+        const errorItemText = ref(null);
         const getClassIcon = computed(() => {
             return `${props.isShow ? 'show' : ''} error-item icon icon-error`;
         });
@@ -47,11 +47,11 @@ export default {
 
         const animationOpen = () => {
             let tl = gsap.timeline();
-            tl.to(errorIitemText.value, {
+            tl.to(errorItemText.value, {
                 y: 3,
                 autoAlpha: 1,
             });
-            tl.to(errorIitemText.value, {
+            tl.to(errorItemText.value, {
                 y: 7,
                 repeat: -1,
                 yoyo: true
@@ -59,7 +59,7 @@ export default {
         }
 
         const animationClose = () => {
-            gsap.to(errorIitemText.value, {
+            gsap.to(errorItemText.value, {
                 y: 0,
                 autoAlpha : 0,
                 duration: 0.4,
@@ -70,7 +70,7 @@ export default {
         return {
             getClassIcon,
             getClassErrorText,
-            errorIitemText,
+            errorItemText,
 
             showErrorText,
             closeErrorText

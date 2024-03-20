@@ -5,7 +5,7 @@
             <h1 class="title title-big"><span class="text-green">So</span>Yummy</h1>
             <p class="text">"What to cook?" is not only a recipe app, it is, in fact, your cookbook. You can add your own recipes to save them for the future.</p>
             <div class="search-dox">
-                <InputText v-model="searchText" placeholder="Search" clases="input search-input search"></InputText>
+                <InputText v-model="searchText" placeholder="Search" classes="input search-input search"></InputText>
                 <button @click="goSearchPage" class="btn btn-curly btn-grey search-btn black">Search</button>
             </div>
         </section>
@@ -19,9 +19,9 @@
         </div>
     </div>
     <div class="second-screen">
-        <!-- <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" >
-            {{ recipeList }}
-        </recipes-section> -->
+        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" >
+
+        </recipes-section>
         <router-link class="btn btn-curly btn-curly-greenTransparent btn-categories" to="/categories">Other categories</router-link>
     </div>
     
@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import { MEALTYPES } from '../../utils/constants';
+import { MEAL_TYPES } from '@/utils/constants';
 
-// import RecipesSection from '../../components/RecipesSection/RecipesSection.vue';
+import RecipesSection from '../../components/RecipesSection/RecipesSection.vue';
 import TheHeader from '../../components/TheHeader/TheHeader.vue';
 import InputText from '../../components/InputText/InputText.vue';
 import TheFooter from '../../components/TheFooter/TheFooter.vue';
@@ -46,25 +46,25 @@ export default {
         const store = useStore();
         const router = useRouter();
 
-        const categories = [MEALTYPES['breakfast'], MEALTYPES['main course'], MEALTYPES['salad'], MEALTYPES['dessert']];
+        const categories = [MEAL_TYPES['breakfast'], MEAL_TYPES['main course'], MEAL_TYPES['salad'], MEAL_TYPES['dessert']];
         const countRecipes = 4;
         const allRecipeList = reactive([]);
         const searchText = ref('');
 
         onBeforeMount(() => {
             if(!allRecipeList.length) {
-                requrstAllRecipesLists();
+                requestAllRecipesLists();
             }
         });
         
-        const requrstAllRecipesLists = async () => {
+        const requestAllRecipesLists = async () => {
             categories.forEach( async (category) => {
-                await requrstRecipesLists(category.title);
+                await requestRecipesLists(category.title);
             });
         }
 
-        const requrstRecipesLists = async (category) => {
-            await store.dispatch('recipes/requrstRecipesLists', { search: category, count: countRecipes, offset: 0});
+        const requestRecipesLists = async (category) => {
+            await store.dispatch('recipes/requestRecipesLists', { search: category, count: countRecipes, offset: 0});
             allRecipeList.push(store.getters['recipes/getRecipesList'](category));
         }
 
@@ -80,7 +80,7 @@ export default {
         }
 
     },
-    components: { TheHeader, InputText, TheFooter },
+    components: { TheHeader, InputText, RecipesSection, TheFooter },
 }
 </script>
 

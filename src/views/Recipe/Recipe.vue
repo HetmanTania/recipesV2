@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="ingredients">
-        <IngredientsSection :ingrediensList="state.recipe.extendedIngredients"></IngredientsSection>
+        <IngredientsSection :ingredientsList="state.recipe.extendedIngredients"></IngredientsSection>
     </div>
     <div class="instructions">
         <h2 class="title title-blue">Recipe Preparation</h2>
@@ -53,7 +53,7 @@ export default {
 
         const getInfoRecipe = async () => {
             const idRecipe = route.params.id; 
-            await store.dispatch('recipes/requrstRecipe', idRecipe);
+            await store.dispatch('recipes/requestRecipe', idRecipe);
             state.recipe = {...store.getters['recipes/getRecipe']};
         };
 

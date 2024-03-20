@@ -3,8 +3,8 @@
       <div class="registrationAuth__form">
           <form class="form form-grey" action="">
               <h1 class="registrationAuth__title title title-small title-white">Sing In</h1>
-              <input-text :error="emailError.error" v-model.lazy="state.email" clases="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
-              <input-password :error="passwordError.error" v-model="state.password" clases="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
+              <input-text :error="emailError.error" v-model.lazy="state.email" classes="registrationAuth__input input" placeholder="Email" icon="email"></input-text>
+              <input-password :error="passwordError.error" v-model="state.password" classes="registrationAuth__input input" placeholder="Password" icon="lock"></input-password>
               <div v-if="globalError.error.isError" class="error-text">{{ globalError.error.text }}</div>
               <button @click.prevent="submit" type="submit" class="registrationAuth__submit btn btn-green">Sing In</button>
           </form>
@@ -21,9 +21,9 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'
 import { reactive, computed } from 'vue' 
 
-import userError from '../../composable/useError.js';
-import { ERRORS_APP } from '../../utils/constants.js';
-import { isFirebaseError, isNotEmptyString } from '../../utils/validators.js';
+import userError from '@/composable/useError.js';
+import { ERRORS_APP } from '@/utils/constants.js';
+import { isFirebaseError, isNotEmptyString } from '@/utils/validators.js';
 
 import InputText from '../../components/InputText/InputText.vue';
 import InputPassword from '../../components/InputPassword/InputPassword.vue';
@@ -46,7 +46,7 @@ export default {
 
   const submit = async () => {
     if (!isDataNotEmpty.value) {
-      setErrorsIfDataIncorect();
+      setErrorsIfDataIncorrect();
       return;
     }
 
@@ -64,11 +64,11 @@ export default {
       router.push('/');
     }
     catch (error) {
-      firebaseErrorsHendler(error);
+      firebaseErrorsHandler(error);
     }
   }
 
-  const firebaseErrorsHendler = (error) => {
+  const firebaseErrorsHandler = (error) => {
     if (isFirebaseError(error.name)) {
       if (emailErrors[error.code]) {
         emailError.setError(emailErrors[error.code]);
@@ -85,7 +85,7 @@ export default {
     }
   }
 
-  const setErrorsIfDataIncorect = () => {
+  const setErrorsIfDataIncorrect = () => {
     if(!isPasswordNotEmpty.value) {
         passwordError.setError(passwordErrors['empty-password']);
       }

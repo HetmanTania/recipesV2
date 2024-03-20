@@ -183,14 +183,14 @@
 
 
 @media(max-width:1450px) {
-    .recipecSection {
+    .recipesSection {
         padding: 0 30px;
     }
 }
 
 
 @media(max-width:1350px) {
-    .recipecSection-list {
+    .recipesSection-list {
        justify-content: space-between;
         .recipe-block:nth-child(4) {
             display: none;
@@ -199,29 +199,29 @@
 }
 
 @media(max-width:1110px) {
-    .recipecSection-list {
+    .recipesSection-list {
         justify-content: space-around;
     }
     
-    .recipecSection-list .recipe-block:nth-child(3) {
+    .recipesSection-list .recipe-block:nth-child(3) {
         display: none;
     }
 }
 
 @media(max-width:1040px) {
-    .recipecSection-title {
+    .recipesSection-title {
         display: none;
     }
 
-    .recipecSection-btn {
+    .recipesSection-btn {
         display: none;
     }
     
-    .recipecSection-list {
+    .recipesSection-list {
         justify-content: space-around;
     }
 
-    .recipecSection-list .recipe-block:nth-child(3) {
+    .recipesSection-list .recipe-block:nth-child(3) {
         display: none;
     }
 
@@ -235,19 +235,19 @@
     .first-screen {
         .bg-img.boul {
             @include size(620px, 590px);
-            @include rePostionTopLeft(95px, 60%, absolute);
+            @include rePositionTopLeft(95px, 60%, absolute);
         }
 
         &-tips {
             @include size(260px, 100px);
-            @include rePostionTopLeft(340px, 68%, absolute);
+            @include rePositionTopLeft(340px, 68%, absolute);
             .tips-text {
                 font-size: 13px;
             }
         }
 
         .leaves-2 {
-            @include rePostionTopLeft(418px, 56%, absolute);
+            @include rePositionTopLeft(418px, 56%, absolute);
             transform: rotate(326deg);
         }
     }
@@ -268,7 +268,7 @@
             margin-top: 40px;
             align-items: center;
             justify-content: flex-start;
-            @include rePostionTopLeft(0, 0, relative);
+            @include rePositionTopLeft(0, 0, relative);
 
             .title {
                 font-size: 60px;
@@ -306,7 +306,7 @@
 
        .bg-img.boul {
             @include size(60%, 420px);
-            @include rePostionTopLeft(-135px, 20%);
+            @include rePositionTopLeft(-135px, 20%);
             background-size: contain;
        }
 
@@ -324,7 +324,7 @@
     
     .first-screen .bg-img.boul {
         width: 70%;
-        @include rePostionTopLeft(-115px, 14%);
+        @include rePositionTopLeft(-115px, 14%);
     }
 
 }
@@ -341,7 +341,7 @@
     
     .first-screen .bg-img.boul {
         width: 80%;
-        @include rePostionTopLeft(-115px, 10%);
+        @include rePositionTopLeft(-115px, 10%);
     }
 
 }
@@ -350,7 +350,7 @@
     
     .first-screen .bg-img.boul {
         width: 90%;
-        @include rePostionTopLeft(-115px, 5%);
+        @include rePositionTopLeft(-115px, 5%);
     }
 
 }
@@ -371,12 +371,12 @@
     
     .first-screen .bg-img.boul {
         width: 110%;
-        @include rePostionTopLeft(-65px, -5%);
+        @include rePositionTopLeft(-65px, -5%);
     }
 
     .second-screen .leaves-1 {
         height: 335px;
-        @include rePostionTopLeft(2120px, -130px, absolute);
+        @include rePositionTopLeft(2120px, -130px, absolute);
         transform: rotate(120deg);
     }
 
@@ -387,7 +387,7 @@
         padding: 0 10px;
          .bg-img.boul {
             @include size(130%, 510px);
-            @include rePostionTopLeft(75px, -15%, absolute);
+            @include rePositionTopLeft(75px, -15%, absolute);
             opacity: 0.7;
             filter: blur(4px);
             z-index: 1;
@@ -432,7 +432,7 @@
 
 @media(max-width:800px) {
 
-    .recipecSection-list .recipe-block {
+    .recipesSection-list .recipe-block {
         min-width: 256px;
        @include size(256px, 230px);
        margin: 0 16px;
@@ -446,17 +446,17 @@
 
     .second-screen .leaves-1 {
         height: 425px;
-        @include rePostionTopLeft(2020px, -90px, absolute);
+        @include rePositionTopLeft(2020px, -90px, absolute);
         transform: rotate(100deg);
     }
 }
 
 
 @media(max-width:580px) {
-    .recipecSection {
+    .recipesSection {
         padding: 0;
     }
-    .recipecSection-list .recipe-block {
+    .recipesSection-list .recipe-block {
        @include size(256px, 230px);
        & .recipe-title {
             @include size(240px, 39px);
@@ -466,7 +466,7 @@
        }
     }
 
-    .recipecSection-list .recipe-block:nth-child(2) {
+    .recipesSection-list .recipe-block:nth-child(2) {
         display: none;
     }
 }

@@ -1,11 +1,11 @@
 <template>
-  <section class="recipecSection">
-    <h3 v-if="isShowTitle.value" class="recipecSection-title title title-big title-black">{{ searchText }}</h3>
-    <div v-if="recipesList.length" class="recipecSection-list list">
+  <section class="recipesSection">
+    <h3 v-if="isShowTitle.value" class="recipesSection-title title title-big title-black">{{ searchText }}</h3>
+    <div v-if="recipesList.length" class="recipesSection-list list">
         <recipes-block v-for="recipe in recipesList" :recipe="recipe" :key="recipe.id"></recipes-block>
     </div>
     <div v-else>... load</div>
-    <router-link v-if="isBtnMore.value" class="recipecSection-btn btn btn-green" to="#">See all</router-link>
+    <router-link v-if="isBtnMore.value" class="recipesSection-btn btn btn-green" to="#">See all</router-link>
   </section>
 </template>
 

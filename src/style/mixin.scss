@@ -26,32 +26,32 @@
 }
 
 
-@mixin positionTopLeft($postion,$top, $left) {
-    position: $postion;
+@mixin positionTopLeft($position,$top, $left) {
+    position: $position;
     top:$top;
     left: $left;
 }
 
-@mixin postionTopRight($postion,$top, $right) {
-    position: $postion;
+@mixin positionTopRight($position, $top, $right) {
+    position: $position;
     top:$top;
     right: $right;
 }
 
-@mixin postionBottomLeft($postion, $bottom, $left) {
-    position: $postion;
+@mixin positionBottomLeft($position, $bottom, $left) {
+    position: $position;
     bottom: $bottom;
     left: $left;
 }
 
-@mixin rePostionTopLeft($top, $left, $postion: relative) {
+@mixin rePositionTopLeft($top, $left, $position: relative) {
     top:$top;
     left: $left;
-    position: $postion;
+    position: $position;
 }
 
-@mixin rePostionBottomLeft($bottom, $left, $postion: relative) {
+@mixin rePositionBottomLeft($bottom, $left, $position: relative) {
     bottom: $bottom;
     left: $left;
-    position: $postion;
+    position: $position;
 }

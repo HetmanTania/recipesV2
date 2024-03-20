@@ -1,13 +1,13 @@
 <template>
-    <div class="ingredien-block">
-        <div class="ingredien-block__inner">
+    <div class="ingredient-block">
+        <div class="ingredient-block__inner">
             <div class="img-name">
                 <div class="img" :style="getBG"/>
                 <h3  class="title">{{ name }}</h3>
             </div>
-            <div class="amount-cheack">
+            <div class="amount-check">
                 <p class="amount">{{ amount }}</p>
-                <label :class="[getClassLabel, 'cheackbox']" :for="getIdIngredients">
+                <label :class="[getClassLabel, 'checkbox']" :for="getIdIngredients">
                     <input v-model="state.isAddToList" :id="getIdIngredients"  type="checkbox">
                 </label>
             </div>
@@ -19,19 +19,19 @@
 <script>
 import { reactive, computed } from 'vue';
 
-import { INGREDIENTS_URL } from '../../utils/constants';
+import { INGREDIENTS_URL } from '@/utils/constants.js';
 
 export default {
     props: {
-        ingredien: {
+      ingredient: {
             type: Object,
             required: true
-        }
+      }
     },
     setup(props) {
 
         const state = reactive({
-            ingredien: {...props.ingredien},
+          ingredient: {...props.ingredient},
             isAddToList: false
         });
         
@@ -44,23 +44,23 @@ export default {
         });
 
         const getClassLabel = computed(() => {
-           return { isCheak: state.isAddToList }
+           return { isCheck: state.isAddToList }
         });
 
         const imgIngredient = computed(() => {
-            return `${INGREDIENTS_URL}_250x250/${state.ingredien.image}`;
+            return `${INGREDIENTS_URL}_250x250/${state.ingredient.image}`;
         });
 
         const getIdIngredients = computed(() => {
-            return state.ingredien.id + state.ingredien.amount;
+            return state.ingredient.id + state.ingredient.amount;
         })
 
         const name = computed(() => {
-            return state.ingredien.originalName.charAt(0).toUpperCase() + state.ingredien.originalName.slice(1);
+            return state.ingredient.originalName.charAt(0).toUpperCase() + state.ingredient.originalName.slice(1);
         });
 
        const amount = computed(() => {
-            return `${state.ingredien.amount} ${state.ingredien.measures.metric.unitShort}`;
+            return `${state.ingredient.amount} ${state.ingredient.measures.metric.unitShort}`;
        });
 
 

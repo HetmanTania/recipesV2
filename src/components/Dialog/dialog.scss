@@ -1,26 +1,32 @@
-.bg-dialog {
-    @include size(100vw, 100vh);
+// .bg-dialog {
+//     @include size(100vw, 100vh);
    
-    @include positionTopLeft(absolute, 0px, 0px);
-    background-color: rgba(0, 0, 0, 0.20);
-    z-index: 10;
-    overflow-y: hidden;
-}
+//     @include positionTopLeft(absolute, 0px, 0px);
+//     background-color: rgba(0, 0, 0, 0.20);
+//     z-index: 10;
+//     overflow-y: hidden;
+//     top: -52vh;
+//     left: 50%;
+//     transform:translate(-50%, -50%);
+// }
 
-.wapper-dialog {
+.wrapper-dialog {
     @include size(100vw, 100vh);
-   
-    @include positionTopLeft(absolute, 0px, 0px);
+    background-color: rgba(0, 0, 0, 0.20);
+    @include positionTopLeft(absolute, -110vh, 0px);
     @include flex-center;
+    z-index: 5;
 }
 
 .dialog {
+    
     min-width: 500px;
     min-height: 215px;
     position: absolute;
+    // top: -100vh;
     background-color: $white;
     border-radius: 30px;
-    box-shadow: 0px 4px 48px 0px $shadow2;
+    box-shadow: 0 4px 48px 0 $shadow2;
     z-index: 15;
     .text {
         color: $black-gray;
@@ -41,7 +47,7 @@
         width: 90%;
         min-width: 90%;
 
-        padding: 50, 30px;
+        padding: 50px 30px;
         
         .icon-close {
             left: 85%;

@@ -1,0 +1,32 @@
+.auth-menu {
+    @include flex-center;
+
+    .header_wrapper-auth-theme {
+        // position: relative;
+    }
+
+    .auth {
+        @include flex-center;
+        position: relative;
+        cursor: pointer;
+        .avatar {
+            @include size(44px, 44px);
+            margin-right: 10px;
+        }
+    }
+
+    .bg-Profile {
+        @include size(100vw, 100vh);
+        @include positionTopLeft(absolute, -10px, 0px);
+        background-color: transparent;
+        z-index: -1;
+    }
+  
+    .icon-menu {
+        display: none;
+        margin-left: 50px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    
+}
