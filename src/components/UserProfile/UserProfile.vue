@@ -5,15 +5,15 @@
                 <img :src="userAvatar" width="44" alt="avatar" class="auth_avatar avatar" />
                 <div class="auth_login">{{ userName }}</div>
             </div>
-            <EditLogoutDialog @close="closeEditLogoutDialog" :isOpen="editLogoutDialogOpenClose.isOpen.value"></EditLogoutDialog>
-            <!-- @close="closeEditLogoutDialog" :isOpen="editLogoutDialogOpenClose.isOpen.value" -->
+          <EditLogoutDialog @close="closeEditLogoutDialog" :isOpen="editLogoutDialogOpenClose.isOpen.value"></EditLogoutDialog>
+
         </div>
     </div>
 </template>
 
 <script>
 
-import EditLogoutDialog from '../EditLogoutDialog/EditLogoutDialog.vue';
+import EditLogoutDialog from "@/components/EditLogoutDialog/EditLogoutDialog.vue";
 
 import useOpenClose from '../../composable/useOpenClose';
 import { computed, ref } from 'vue'
@@ -28,24 +28,21 @@ export default {
 
         const userAvatar = computed(() => {
             if( store.getters.getUserAvatarPhotoURL?.length) {
-                return store.getters.getUserAvatarPhotoURL;
+              return store.getters.getUserAvatarPhotoURL;
             }
                     
-            return require('../../assets/svg/avatar.svg');
+          return require('../../assets/svg/avatar.svg');
         });
 
         const userName = computed(() => {
-            return store.getters.getUserName;
+          return store.getters.getUserName;
         });
 
-        const openEditLogoutDialog = (e) => {
-            // if(e.target === authMenu.value) {
-                editLogoutDialogOpenClose.open();
-            // }
-            console.log(e);
+        const openEditLogoutDialog = () => {
+          editLogoutDialogOpenClose.open();
         }
         const closeEditLogoutDialog = () => {
-            editLogoutDialogOpenClose.close();
+          editLogoutDialogOpenClose.close();
         }
 
         return {
@@ -67,5 +64,5 @@ export default {
 <style lang="scss">
 @import '../../style/var.scss';
 @import '../../style/mixin.scss';
-@import 'userProfile';
+@import './userProfile.scss';
 </style>

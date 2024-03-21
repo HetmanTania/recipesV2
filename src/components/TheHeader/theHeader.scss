@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     margin-top: 10px;
-    z-index: 10;
+    z-index: 9;
     &_wrapper {
         @include flex(center, space-around);
     }

@@ -27,7 +27,6 @@ export default {
             await set(ref(database, `/user/${getters.getUId}/info` ), { name });
         },
         async logout({commit}) {
-            console.log('logout');
             try {
                 await signOut(auth);
                 commit('setUser', {});

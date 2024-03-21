@@ -22,7 +22,7 @@
 
 <script>
 import { gsap } from "gsap";
-import { ANIMATION_EASY } from '@/utils/constants';
+import { ANIMATION_EASY, DURATION_08, DURATION_03, DURATION_04 } from '@/utils/animationConstants';
 
 
 export default {
@@ -40,14 +40,14 @@ export default {
                 autoAlpha: 1,
                 top: 0,
                 ease: ANIMATION_EASY,
-                duration: 0.8
+                duration: DURATION_08
             });
             tl.to('.list-ul li a', {
                 opacity: 1,
                 y: -71,
                 rotate: 0,
                 ease: "power2.in",
-                duration: 0.3
+                duration: DURATION_03
             })
         }
 
@@ -58,14 +58,14 @@ export default {
                 y: 66,
                 rotate: 16,
                 ease: "power2.in",
-                duration: 0.3
+                duration: DURATION_03
             })
             tl.to('.menu-block', {
                 delay: .6,
                 autoAlpha: 1,
                 top: '-101vh',
                 ease: ANIMATION_EASY,
-                duration: 0.4
+                duration: DURATION_04
             });
             
         }

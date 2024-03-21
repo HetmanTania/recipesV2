@@ -1,20 +1,10 @@
-// .bg-dialog {
-//     @include size(100vw, 100vh);
-   
-//     @include positionTopLeft(absolute, 0px, 0px);
-//     background-color: rgba(0, 0, 0, 0.20);
-//     z-index: 10;
-//     overflow-y: hidden;
-//     top: -52vh;
-//     left: 50%;
-//     transform:translate(-50%, -50%);
-// }
-
 .wrapper-dialog {
     @include size(100vw, 100vh);
     background-color: rgba(0, 0, 0, 0.20);
-    @include positionTopLeft(absolute, -110vh, 0px);
+    @include positionTopLeft(absolute, -10px, 0);
     @include flex-center;
+    visibility: hidden;
+    opacity: 0;
     z-index: 5;
 }
 
@@ -23,7 +13,7 @@
     min-width: 500px;
     min-height: 215px;
     position: absolute;
-    // top: -100vh;
+    transform: translate(0px, -100vh);
     background-color: $white;
     border-radius: 30px;
     box-shadow: 0 4px 48px 0 $shadow2;

@@ -1,5 +1,5 @@
 <template>
-    <BaseDialog @click.prevent.stop :isOpenDialog="isOpenDialog" @close="closeDialog">
+    <BaseDialog @click.prevent.stop :isOpenDialog="isOpen" @close="closeDialog">
         <template v-slot:content>
             <div class="content">
                <h3 class="sub-title">Are you sure you want to log out?</h3>
@@ -22,7 +22,7 @@ import { useRouter } from 'vue-router';
 
 export default {
     props: {
-        isOpenDialog: {
+        isOpen: {
             default: false,
             type: Boolean,
             validator: isBool
@@ -33,12 +33,12 @@ export default {
         const store = useStore();
 
         const closeDialog = () => {
-            context.emit('closeDialog');
+            context.emit('close');
         }
 
         const logout = async () => {
             await store.dispatch('logout');
-            await router.push('/welcome');
+            router.push('/welcome');
         }
 
         return {
