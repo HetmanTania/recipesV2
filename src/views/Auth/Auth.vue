@@ -62,6 +62,7 @@ export default {
     try {
       await store.dispatch('login', formData);
       router.push('/');
+
     }
     catch (error) {
       firebaseErrorsHandler(error);

@@ -7,9 +7,10 @@
 </template>
 
 <script>
+import {DURATION_04} from "@/utils/animationConstants";
+
 import { computed, ref } from 'vue';
 import { gsap } from "gsap";
-
 
 export default {
     props: {
@@ -35,13 +36,11 @@ export default {
 
         const showErrorText = () => {
             onIcon.value = true;
-            console.log('showErrorText');
             animationOpen();
         };
 
         const closeErrorText = () => {
             onIcon.value = false;
-            console.log('closeErrorText');
             animationClose();
         };
 
@@ -62,7 +61,7 @@ export default {
             gsap.to(errorItemText.value, {
                 y: 0,
                 autoAlpha : 0,
-                duration: 0.4,
+                duration: DURATION_04,
             });
         }
 

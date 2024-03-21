@@ -15,7 +15,7 @@ import {  ref, watch } from 'vue';
 import { gsap } from "gsap";
 
 import { isBool } from '@/utils/validators';
-import { ANIMATION_EASY } from '@/utils/constants';
+import { ANIMATION_EASY, DURATION_03 } from '@/utils/animationConstants';
 
 export default {
     props: {
@@ -26,51 +26,58 @@ export default {
        }
     },
     emits: ["close"],
-    setup(props, context) { //props, context
-        const currentWrapper = ref(null);
-        const currentDialog = ref(null);
+  setup(props, context) {
+    const currentWrapper = ref(null);
+    const currentDialog = ref(null);
 
-        const close = () => {
-            context.emit('close');
-            animateClose();
-        }
-
-        watch(() => props.isOpenDialog, (newValue) => {
-            if(newValue) {
-                animateOpen();
-            }
-            else {
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        const animateOpen = () => {
-            animate('109vh', '0vh');
-        }
-
-        const animateClose = () => {
-            animate('-110vh', '-100vh');
-        }
-
-        const animate = (yCurrentWrapper, yCurrentDialog) => {
-            const tl = gsap.timeline();
-            tl.to(currentWrapper.value, {
-                y: yCurrentWrapper,
-            });
-            tl.to(currentDialog.value, {
-                y: yCurrentDialog,
-                ease: ANIMATION_EASY,
-                duration: 0.3
-            })
-        }
-
-        return {
-            close,
-
-            currentWrapper,
-            currentDialog
-        }
+    const tl = gsap.timeline();
+    const close = () => {
+      context.emit('close');
+      animateClose();
     }
+
+    watch(() => props.isOpenDialog, (newValue) => {
+      if(newValue) {
+        animateOpen();
+      }
+      else {
+        animateClose();
+      }
+    });
+
+    const animateOpen = () => {
+      animateWrapper(1);
+      animateDialog(1, 0);
+    }
+
+    const animateClose = () => {
+      animateDialog(1, '-100vh');
+      animateWrapper(0);
+    }
+
+    const animateWrapper = (alpha) => {
+      tl.to(currentWrapper.value, {
+        autoAlpha: alpha,
+        ease: ANIMATION_EASY,
+        duration: DURATION_03
+      });
+    }
+
+    const animateDialog = (alpha, y) => {
+      tl.to(currentDialog.value, {
+        autoAlpha: alpha,
+        y: y,
+        ease: ANIMATION_EASY,
+      })
+    }
+
+    return {
+      close,
+
+      currentWrapper,
+      currentDialog
+    }
+  }
 }
 
 </script>

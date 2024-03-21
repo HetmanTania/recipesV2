@@ -1,0 +1,41 @@
+.editProfile {
+  opacity: 0;
+  visibility: hidden;
+  @include size(177px, 134px);
+  @include positionTopRight(absolute, 90px, 90px);
+  @include flex(flex-start, space-between, column);
+  padding: 18px;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 0 11px 0 rgb(0 0 0 / 10%);
+  z-index: 4;
+  .edit {
+    width: 100%;
+    @include flex(center, space-between);
+    cursor: pointer;
+    p {
+      color: $black-gray;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 22.4px;
+    }
+
+    .svg {
+      @include size(14px, 14px);
+    }
+  }
+
+  .icon-edit {
+    cursor: pointer;
+  }
+  .btn-curly {
+    padding: 12px 35px;
+  }
+}
+
+.bg-Profile {
+  @include size(100vw, 100vh);
+  @include positionTopLeft(absolute, -10px, 0px);
+  background-color: transparent;
+  z-index: -1;
+}

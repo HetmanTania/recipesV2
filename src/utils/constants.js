@@ -76,5 +76,4 @@ export const ERRORS_APP = {
 }
 
 gsap.registerPlugin(CustomEase);
-export const ANIMATION_EASY = CustomEase.create("custom", 
-                    "M0,0 C0.016,0 0.486,0.034 0.532,0.073 0.702,0.217 0.628,0.631 0.797,0.878 0.888,1.012 1,1 1,1 ");
+

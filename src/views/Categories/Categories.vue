@@ -20,7 +20,7 @@ import Pagination from '../../components/Pagination/Pagination.vue';
 import TheHeader from '../../components/TheHeader/TheHeader.vue';
 import TheFooter from '../../components/TheFooter/TheFooter.vue'
 
-import { MEAL_TYPES } from '../../utils/constants';
+import { MEAL_TYPES } from '@/utils/constants';
 
 import { onMounted, computed, ref } from 'vue';
 import { useStore } from 'vuex';
@@ -60,7 +60,7 @@ export default {
             if(text) {
                 typeMeal.value = MEAL_TYPES[text].value;
                 await requestRecipesLists();
-                changePagination(1);
+                await changePagination(1);
             }
         };
 

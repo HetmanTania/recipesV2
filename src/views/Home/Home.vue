@@ -19,9 +19,7 @@
         </div>
     </div>
     <div class="second-screen">
-        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" >
-
-        </recipes-section>
+        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" ></recipes-section>
         <router-link class="btn btn-curly btn-curly-greenTransparent btn-categories" to="/categories">Other categories</router-link>
     </div>
     
@@ -58,7 +56,7 @@ export default {
         });
         
         const requestAllRecipesLists = async () => {
-            categories.forEach( async (category) => {
+            categories.forEach(async (category) => {
                 await requestRecipesLists(category.title);
             });
         }
@@ -80,7 +78,7 @@ export default {
         }
 
     },
-    components: { TheHeader, InputText, RecipesSection, TheFooter },
+    components: { TheHeader, RecipesSection, InputText, TheFooter },
 }
 </script>
 

@@ -78,7 +78,7 @@
         @include bg-img('../../assets/svg/lineArrow.svg');
         @include positionTopLeft(absolute, 520px, 77%);
 
-        z-index: 9;
+        z-index: 7;
     }
 
     &-tips {
