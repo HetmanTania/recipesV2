@@ -30,9 +30,9 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits({
-  close,
-});
+const emit = defineEmits([
+  'close',
+]);
 
 const logoutOpenClose = useOpenClose();
 const editProfileOpenClose = useOpenClose();
