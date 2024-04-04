@@ -1,0 +1,23 @@
+.loader-wrapper {
+  @include size(100vw, 100vh);
+  @include flex-center();
+  background-color: $white;
+
+  .loader {
+    width: 150px;
+    padding: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #8BAA36;
+    mask: conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: load 1s infinite linear;
+  }
+  @keyframes load {
+    to{
+      transform: rotate(1turn)
+    }
+  }
+}

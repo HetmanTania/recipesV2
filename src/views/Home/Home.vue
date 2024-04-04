@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="second-screen">
-        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0].id" ></recipes-section>
+        <recipes-section :recipesList="recipeList" v-for="recipeList in allRecipeList" :key="recipeList[0]?.id" ></recipes-section>
         <router-link class="btn btn-curly btn-curly-greenTransparent btn-categories" to="/categories">Other categories</router-link>
     </div>
     
@@ -49,9 +49,9 @@ export default {
         const allRecipeList = reactive([]);
         const searchText = ref('');
 
-        onBeforeMount(() => {
+        onBeforeMount(async () => {
             if(!allRecipeList.length) {
-                requestAllRecipesLists();
+                await requestAllRecipesLists();
             }
         });
         

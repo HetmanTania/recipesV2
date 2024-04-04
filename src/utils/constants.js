@@ -75,5 +75,7 @@ export const ERRORS_APP = {
     }
 }
 
+export const DAY_LIMITS_OVER = 402;
+
 gsap.registerPlugin(CustomEase);
 

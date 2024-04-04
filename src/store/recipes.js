@@ -1,12 +1,16 @@
-import axios from 'axios';
+import api from '@/utils/api.js';
+import axios from "axios";
 import {generateUrl, toLowerCase} from '@/utils/utils.js'
+import { DAY_LIMITS_OVER } from '@/utils/constants.js';
 
 export default {
     namespaced: true,
     state: {
         recipesLists: {},
         recipe : {},
-        infoPagination: {}
+        infoPagination: {},
+
+        dayLimitsOver: false,
     },
     mutations: {
         addItemsToRecipesLists(state, date) {
@@ -24,17 +28,29 @@ export default {
             if(recipe && recipe.id) {
                 state.recipe = {...recipe};
             }
+        },
+
+        setDayLimitsOver(state, value) {
+            state.dayLimitsOver = value;
         }
     },
     actions: {
-        async doRequestRecipes(_, url) {
+        async testIsDayLimitsOverRecipes({dispatch}) {
+            let url = generateUrl('complexSearch',`test/number=1`);
+            await dispatch('doRequestRecipes', url);
+        },
+        async doRequestRecipes({commit, getters}, url) {
+
             try {
-                if(url && url.length) {
-                    const result = await axios.get(url);
+                if(url && url.length && !getters.getDayLimitsOver) {
+                    const result = await api.get(url);
                     return result.data;
                 }
             } catch(e) {
-                console.log(e);
+                console.log(e)
+                if(e.response.status && e.response.status === DAY_LIMITS_OVER) {
+                    commit('setDayLimitsOver', true);
+                }
             }
         },
         async requestRecipesLists({ dispatch, commit }, {search, count, offset}) {
@@ -101,6 +117,9 @@ export default {
         },
         getInfoPagination(state) {
             return state.infoPagination;
+        },
+        getDayLimitsOver(state) {
+            return state.dayLimitsOver
         }
     }
 }

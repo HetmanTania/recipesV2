@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { getAuth } from "firebase/auth";
+import middleware from "@/router/middleware";
 const routes = [
   { 
     path: "/welcome",
@@ -30,7 +30,8 @@ const routes = [
     name: "Home",
     component: () => import('../views/Home/Home'), 
     meta: {
-      auth: true
+      auth: true,
+      limitsOver: true,
     }
   },
   {
@@ -38,7 +39,8 @@ const routes = [
     name: 'recipe',
     component: () => import('../views/Recipe/Recipe'),
     meta: {
-      auth: true
+      auth: true,
+      limitsOver: true,
     }
   },
   { 
@@ -46,7 +48,8 @@ const routes = [
     name: "Categories",
     component: () => import('../views/Categories/Categories'), 
     meta: {
-      auth: true
+      auth: true,
+      limitsOver: true,
     }
   },
   { 
@@ -54,10 +57,18 @@ const routes = [
     name: "Search",
     component: () => import('../views/Search/Search'), 
     meta: {
+      auth: true,
+      limitsOver: true,
+    }
+  },
+  {
+    path: "/505",
+    name: "505",
+    component: () => import('../views/Page505/Page505.vue'),
+    meta: {
       auth: true
     }
   },
-  
 ]
 
 const router = createRouter({
@@ -65,20 +76,5 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, _, next) => {
-  const currentUser = getAuth().currentUser;
-  const isAuth = to.matched.some((record) => record.meta.auth);
-
-  if(isAuth && !currentUser) {
-    next('signIn');
-  }
-  else if (!isAuth && currentUser) {
-    next('/');
-  }
-  else {
-    next();
-  }
-})
-
-
+router.beforeEach(middleware)
 export default router
