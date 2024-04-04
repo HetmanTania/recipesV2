@@ -1,0 +1,38 @@
+.wrapper {
+  @include size(100%, 90vh);
+  @include flex(center, flex-start, column);
+
+  .img-505 {
+    max-width: 498px;
+    max-height: 331px;
+  }
+
+  .title {
+    margin: 0 5px;
+  }
+
+  .title-big {
+    font-size: 28px;
+  }
+}
+@media(max-width: 630px) {
+  .wrapper {
+    padding: 20px;
+  }
+  .img-505 {
+    width: 80%;
+    height: auto;
+  }
+}
+
+@media(max-width: 460px) {
+  .wrapper {
+    height: 70vh;
+  }
+  .title-big {
+    font-size: 20px;
+  }
+  .sub-title {
+    font-size: 16px;
+  }
+}

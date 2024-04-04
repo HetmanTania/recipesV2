@@ -4,7 +4,7 @@
         <h1 class="title title-big">Categories</h1>
         <div class="tab-system">
             <div @click="chooseType" class="tabs">
-                <div v-for="mealTypes in MEAL_TYPES" :key="mealTypes.title" :class="[{'tab-check': mealTypes === typeMeal}, 'tab']">{{ mealTypes.title }}</div>
+                <div v-for="mealTypes in MEAL_TYPES" :key="mealTypes.title" :class="getClassesTab(mealTypes)">{{ mealTypes.title }}</div>
             </div>
         </div>
         <RecipesSection :recipesList="recipeList" :isBtnMore="false" :isShowTitle="false"></RecipesSection>
@@ -25,12 +25,13 @@ import { MEAL_TYPES } from '@/utils/constants';
 import { onMounted, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
+
 export default {
 
     setup() {
         const store = useStore();
 
-        const typeMeal = ref(MEAL_TYPES['main course'].value);
+        const currentTypeMeal = ref(MEAL_TYPES['main course'].value);
         const pageNum = ref(1);
         const countRecipes = 8;
         let offset = 0;
@@ -41,7 +42,7 @@ export default {
         });
 
         const requestRecipesLists = async () => {
-            await store.dispatch('recipes/requestRecipesLists', { search: typeMeal.value, count: countRecipes, offset: offset});
+            await store.dispatch('recipes/requestRecipesLists', { search: currentTypeMeal.value, count: countRecipes, offset: offset});
         };
  
         const changePagination = async (num) => {
@@ -58,14 +59,14 @@ export default {
         const chooseType = async (e) => {
             const text = e.target.innerText.toLowerCase();
             if(text) {
-                typeMeal.value = MEAL_TYPES[text].value;
+                currentTypeMeal.value = MEAL_TYPES[text].value;
                 await requestRecipesLists();
                 await changePagination(1);
             }
         };
 
         const recipeList = computed(() => {
-            return store.getters['recipes/getRecipesList'](typeMeal.value);
+            return store.getters['recipes/getRecipesList'](currentTypeMeal.value);
         });
 
         
@@ -73,15 +74,20 @@ export default {
             return store.getters['recipes/getInfoPagination'];
         });
 
+        const getClassesTab = (mealType) => {
+          const isTabCheck = mealType.value === currentTypeMeal.value ? 'tab-check': '';
+          return ['tab', isTabCheck];
+        }
 
         return {
             MEAL_TYPES,
-            typeMeal,
+            currentTypeMeal,
             pageNum,
 
             infoPagination,
             recipeList,
 
+            getClassesTab,
             changePagination,
             chooseType
         }
