@@ -12,9 +12,9 @@ const props = defineProps({
     required: true,
   }
 });
-const emit = defineEmits({
-  close,
-})
+const emit = defineEmits([
+  'close',
+]);
 let isShowMore1sec = ref(false);
 let show1secTimeout;
 
