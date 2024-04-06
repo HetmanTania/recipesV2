@@ -15,8 +15,6 @@
 import TheHeader from "@/components/TheHeader/TheHeader.vue";
 import TheFooter from "@/components/TheFooter/TheFooter.vue";
 
-console.log('505');
-
 </script>
 
 <style lang="scss">
