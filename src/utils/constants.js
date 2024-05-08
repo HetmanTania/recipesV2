@@ -1,10 +1,15 @@
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 
-export const MAIN_URL = 'https://api.spoonacular.com/recipes/';
+export const MAIN_URL = 'https://api.spoonacular.com/';
 export const INGREDIENTS_URL = 'https://spoonacular.com/cdn/ingredients';
 
 export const API_KEY = process.env.VUE_APP_API_KEYv2;
+
+export const STATUS_FULFILLED = 'fulfilled';
+
+
+export const COUNTABLE = 'countable';
 
 export const MEAL_TYPES = {
     'main course': {

@@ -5,7 +5,7 @@
             <h1 class="title title-big"><span class="text-green">So</span>Yummy</h1>
             <p class="text">"What to cook?" is not only a recipe app, it is, in fact, your cookbook. You can add your own recipes to save them for the future.</p>
             <div class="search-dox">
-                <InputText v-model="searchText" placeholder="Search" classes="input search-input search"></InputText>
+                <InputText v-model="searchText" placeholder="Search" classes="input search-input search"/>
                 <button @click="goSearchPage" class="btn btn-curly btn-grey search-btn black">Search</button>
             </div>
         </section>

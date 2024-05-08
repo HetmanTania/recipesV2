@@ -36,7 +36,7 @@ export default {
     },
     actions: {
         async testIsDayLimitsOverRecipes({dispatch}) {
-            let url = generateUrl('complexSearch',`test/number=1`);
+            let url = generateUrl('recipes/complexSearch',`test/number=1`);
             await dispatch('doRequestRecipes', url);
         },
         async doRequestRecipes({commit, getters}, url) {
@@ -48,14 +48,14 @@ export default {
                 }
             } catch(e) {
                 console.log(e)
-                if(e.response.status && e.response.status === DAY_LIMITS_OVER) {
+                if(e?.response?.status && e.response.status === DAY_LIMITS_OVER) {
                     commit('setDayLimitsOver', true);
                 }
             }
         },
         async requestRecipesLists({ dispatch, commit }, {search, count, offset}) {
             search = toLowerCase(search);
-            let url = generateUrl('complexSearch',`type=${search}&number=${count}&offset=${offset}`);
+            let url = generateUrl('recipes/complexSearch',`type=${search}&number=${count}&offset=${offset}`);
            
             const result = await dispatch('doRequestRecipes', url);
             
@@ -76,7 +76,7 @@ export default {
         },
         async requestSearch({dispatch, commit}, {search, count, offset}) {
             search = toLowerCase(search);
-            const url = generateUrl('complexSearch',`query=${search}&number=${count}&offset=${offset}`);            
+            const url = generateUrl('recipes/complexSearch',`query=${search}&number=${count}&offset=${offset}`);
             const result = await dispatch('doRequestRecipes', url);
             if(result) {
                 const items = {
@@ -96,7 +96,7 @@ export default {
         async requestRecipe({commit}, id) {
             if(id) {
                 try {
-                    const url = generateUrl(`/${id}/information`);
+                    const url = generateUrl(`recipes/${id}/information`);
                     const item = await axios(url);
                     if(item?.data) {
                         commit('setRecipe', item.data)

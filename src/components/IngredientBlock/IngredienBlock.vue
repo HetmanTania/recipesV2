@@ -8,7 +8,7 @@
             <div class="amount-check">
                 <p class="amount">{{ amount }}</p>
                 <label :class="[getClassLabel, 'checkbox']" :for="getIdIngredients">
-                    <input v-model="state.isAddToList" :id="getIdIngredients"  type="checkbox">
+                    <input @change="changeInputAddToLis" :id="getIdIngredients"  type="checkbox">
                 </label>
             </div>
         </div>
@@ -18,9 +18,8 @@
 
 <script>
 import { reactive, computed } from 'vue';
-
-import { INGREDIENTS_URL } from '@/utils/constants.js';
-
+import {getImgProduct, toFirstLetterUppercase} from "@/utils/utils";
+import { useStore } from "vuex";
 export default {
     props: {
       ingredient: {
@@ -29,53 +28,61 @@ export default {
       }
     },
     setup(props) {
+      const state = reactive({
+        ingredient: {...props.ingredient},
+      });
 
-        const state = reactive({
-          ingredient: {...props.ingredient},
-            isAddToList: false
-        });
-        
-        const changeInputAddToLis = () => {
-            state.isAddToList = !state.isAddToList
+      const store = useStore();
+      const changeInputAddToLis = () => {
+        if(!isIngredientInShoppingList.value) {
+          store.dispatch('products/addOrUpdateProductList', state.ingredient);
         }
-
-        const getBG = computed(() => {
-           return { backgroundImage: `url(${imgIngredient.value})` };
-        });
-
-        const getClassLabel = computed(() => {
-           return { isCheck: state.isAddToList }
-        });
-
-        const imgIngredient = computed(() => {
-            return `${INGREDIENTS_URL}_250x250/${state.ingredient.image}`;
-        });
-
-        const getIdIngredients = computed(() => {
-            return state.ingredient.id + state.ingredient.amount;
-        })
-
-        const name = computed(() => {
-            return state.ingredient.originalName.charAt(0).toUpperCase() + state.ingredient.originalName.slice(1);
-        });
-
-       const amount = computed(() => {
-            return `${state.ingredient.amount} ${state.ingredient.measures.metric.unitShort}`;
-       });
-
-
-        return {
-            state,
-
-            changeInputAddToLis,
-
-            getIdIngredients,
-            getClassLabel,
-            imgIngredient,
-            name,
-            amount,
-            getBG,
+        else {
+          store.dispatch('products/deleteProduct', state.ingredient.id);
         }
+      }
+
+      const isIngredientInShoppingList = computed(() => {
+        return !!store.getters['products/getProductFromFirebaseById'](state.ingredient.id);
+      })
+
+      const getBG = computed(() => {
+         return { backgroundImage: `url(${imgIngredient.value})` };
+      });
+
+      const getClassLabel = computed(() => {
+         return { isCheck: isIngredientInShoppingList.value }
+      });
+
+      const imgIngredient = computed(() => {
+        return getImgProduct(state.ingredient.image);
+      });
+
+      const getIdIngredients = computed(() => {
+        return state.ingredient.id + state.ingredient.amount;
+      })
+
+      const name = computed(() => {
+        return toFirstLetterUppercase(state.ingredient.originalName);
+      });
+
+      const amount = computed(() => {
+        return `${state.ingredient.amount} ${state.ingredient.measures.metric.unitShort}`;
+      });
+
+
+      return {
+        state,
+
+        changeInputAddToLis,
+
+        getIdIngredients,
+        getClassLabel,
+        imgIngredient,
+        name,
+        amount,
+        getBG,
+      }
 
     }
 }

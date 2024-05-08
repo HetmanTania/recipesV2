@@ -19,6 +19,7 @@ const testRecipes = async () => {
 }
 
 testRecipes();
+store.dispatch('products/getAllProductListFromFirebase');
 
 const closeLoad = () => {
   isLoadShow.value = false;

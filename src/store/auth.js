@@ -4,6 +4,7 @@ import { ref, set } from 'firebase/database';
 
 import { database, auth } from "@/firebase/firebase";
 export default {
+    namespace: true,
     state: {
         user: {}
     },
@@ -100,6 +101,7 @@ export default {
     getters: {
         getUId() {
             const user = auth.currentUser;
+            console.log('uid', user.uid)
             return user ? user.uid : null;
         },
         getUser(state) {

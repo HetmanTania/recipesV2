@@ -5,7 +5,7 @@
         <h2 class="title title-small">Write a search query</h2>
         <div class="search-system">
             <div class="search-system__wrapper">
-                <InputText v-model="valueSearchText" placeholder="Search" classes="search__input curly-input input input-gray"></InputText>
+                <InputText v-model="valueSearchText" placeholder="Search" classes="search__input curly-input input input-gray"/>
                 <button @click="search" class="btn btn-curly btn-curly-green-hoverBlack btn-curly-green">Search</button>
             </div>
         </div>

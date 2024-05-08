@@ -52,6 +52,15 @@ const routes = [
       limitsOver: true,
     }
   },
+  {
+    path: "/shoppingList",
+    name: "ShoppingList",
+    component: () => import('../views/ShoppingList/ShoppingList'),
+    meta: {
+      auth: true,
+      limitsOver: true,
+    }
+  },
   { 
     path: "/search",
     name: "Search",
