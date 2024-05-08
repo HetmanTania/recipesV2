@@ -8,7 +8,7 @@
                     <input @change="setUserAvatar" id="file" type="file" accept=".jpg, .jpeg, .png" />
                 </div>
                 <form action="" class="form-hidden">
-                    <InputText v-model="state.userName" :isError="state.errorName" classes="editProfileDialog__input input input-gray" placeholder="User Name" icon="user-black"></InputText>
+                    <InputText v-model="state.userName" :isError="state.errorName" classes="editProfileDialog__input input input-gray" placeholder="User Name" icon="user-black"/>
                     <button @click.prevent="updateUserProfile" type="submit" class="btn btn-green">Save changes</button>
                 </form>
             </div>

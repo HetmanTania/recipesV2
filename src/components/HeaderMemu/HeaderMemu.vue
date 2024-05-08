@@ -13,6 +13,7 @@
                    <li><router-link to="/">Home</router-link></li>
                    <li><router-link to="/categories">Categories</router-link></li>
                    <li><router-link to="/search">Search</router-link> </li>
+                 <li><router-link to="/shoppingList">Shopping list</router-link> </li>
                </ul>
            </div>
            <div class="bg-img leaves-1"></div>

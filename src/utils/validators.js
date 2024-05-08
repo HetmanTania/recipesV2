@@ -32,6 +32,15 @@ export function isNumberOrNull(value) {
 export function isUndefined(value) {
     return value === undefined;
 }
+// -------------------------------------------------------------
+
+export function isProductFiredaseType(product) {
+    if(product && product.id && product.count) {
+        return true;
+    }
+    return false;
+}
+
 
 // -------------------------------------------------------------
 

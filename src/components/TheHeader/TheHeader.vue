@@ -8,6 +8,7 @@
                 <ul class="nav_list">
                     <li class="nav_list-item"><router-link to="/categories">Categories</router-link></li>
                     <li class="nav_list-item"><router-link to="/search">Search</router-link></li>
+                    <li class="nav_list-item"><router-link to="/shoppingList">Shopping list</router-link></li>
                 </ul>
             </nav>
             <UserProfile></UserProfile>

@@ -33,15 +33,6 @@
     .amount-check {
         width: 200px;
         @include flex(center, space-between);
-
-        .amount {
-            @include size(90px,  35px);
-            padding-top: 6px;
-            color: $white;
-            background-color: $green;
-            border-radius: 5px;
-            text-align: center;
-        }
     }
 }
 

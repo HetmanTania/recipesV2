@@ -1,0 +1,21 @@
+.products-block {
+  padding: 50px;
+  .products-header {
+    @include size(100%, 60px);
+    @include flex(center, space-between);
+    padding: 0 40px;
+    font-size: 18px;
+    color: $white;
+    background-color: $green;
+    border-radius: 5px;
+
+    .number-remove {
+      width: 220px;
+      @include flex(center, space-between);
+    }
+  }
+
+  .wrapper-product {
+    padding: 50px;
+  }
+}

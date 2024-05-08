@@ -19,6 +19,7 @@ if(!app) {
   });
 }
 
+// Needs to remove
 let auth = null;
 if(!auth) {
   auth = getAuth();

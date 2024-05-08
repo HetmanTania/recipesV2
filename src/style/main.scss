@@ -40,6 +40,11 @@ footer {
     font-size: 14px;
 }
 
+.btn-icon {
+    background-color: transparent;
+    border: none;
+}
+
 .btn  {
     width: 100%;
     padding: 17px 35px;
@@ -194,6 +199,15 @@ footer {
     &-gray {
         color: $light-gray4;
     }
+}
+
+.amount {
+    @include size(90px, 35px);
+    padding-top: 6px;
+    color: $white;
+    background-color: $green;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .avatar {
